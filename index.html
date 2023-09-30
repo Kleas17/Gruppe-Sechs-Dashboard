@@ -1,42 +1,22 @@
-<!-- 
-        © 2023 Kleas. All rights reserved.
-
-    ////////////////////////////Author informations\\\\\\\\\\\\\\\\\\\\\\\\\\
-    Author: Kleas.
-    Discord : kleas.
-    Website:
-    Github: https://github.com/Kleas17
-
-    ////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
-                    THIS CODE IS NOT FOR SALES.
-    ////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    All rights reserved :
- 
-    This website is the confidential and exclusive property of Kleas. 
-    It may not be used, disclosed, copied, reproduced, transmitted, translated, 
-    hosted, or stored in whole or in part, in any form or by any means, electronic, mechanical, 
-    photocopying, recording, or otherwise, without the prior written permission of the Owner. 
-    Unauthorized reproduction, disclosure, transmission, translation, hosting, storage, or use 
-    of this website is strictly prohibited.
-
-    ////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    The code is open source only for check and transparency.
-
-    ////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\
-
--->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> <!-- Path: style.css -->
-    <title>Dashboard Gruppe Sechs</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Page de Connexion</title>
 </head>
 <body>
-    le g6 c cool
+    <div class="container">
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <form class="login-form">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

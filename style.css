@@ -1,0 +1,74 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%; /* Réinitialisation de la taille de la police pour faciliter le rem */
+}
+body {
+    font-size: 1.6rem; /* 16px */
+    line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+ul, ol {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Code */
+body {
+    background-color: #121212; /* noir mat */
+    color: white; /* écriture blanche */
+    font-family: Arial, sans-serif;
+}
+
+.login-form {
+    background-color: #22543A; /* vert foncé */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+}
+.login-form button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #22543A;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    position: relative; /* Ajouté pour permettre la position absolue du logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo {
+    position: absolute; /* Logo en position absolue */
+    top: 20%; /* Distance du haut */
+    left: 50%; /* Centrage horizontal */
+    transform: translateX(-50%); /* Ajustement du centrage */
+    max-width: 400px;
+}
