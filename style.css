@@ -72,3 +72,14 @@ body {
     transform: translateX(-50%); /* Ajustement du centrage */
     max-width: 400px;
 }
+
+
+/* Seconde page */
+.welcome {
+    background-color: #121212; /* noir mat */
+    color: white; /* écriture blanche */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
