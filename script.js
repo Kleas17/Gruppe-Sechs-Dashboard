@@ -14,6 +14,6 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         localStorage.setItem('isConnected', 'true');
         window.location.href = 'gruppeSechs.html';
     } else {
-        errorMessage.textContent = 'Mot de passe incorrect.';
+        errorMessage.textContent = 'Mot de passe incorrect. ';
     }
 });
