@@ -76,12 +76,18 @@
                 <label for="DimancheFin">Fin:</label>
                 <input type="time" id="DimancheFin" name="DimancheFin" required>
             </div>
-            <button type="button" id="addAgentBtn">Ajouter l'agent</button>
+            <button type="button" id="addAgentBtn">Ajouter l'agentttt</button>
         </form>
         
         
         <div id="agentList"></div>
     </div>
-    <script src="agents.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+
+    <!-- If you enabled Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+    <script type="module" src="agents.js"></script>
 </body>
 </html>
