@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Documents essentiels</title>
+</head>
+<body class="documents-page">
+    <img src="logo.png" alt="Logo de GruppeSechs" class="logoTop">
+
+    <section class="documents-section">
+        <h2 style="font-size: 60px;">Documents essentiels</h2>
+        <div class="document-gallery" style="font-size: 1.1vm;">
+            
+            <div class="document-item" data-doc="path/to/document2.pdf">Formation PPA - Format Slide
+                <img src="documents.png" alt="Document 3" style="border-radius: 5%;">
+            </div>
+            <div class="document-item" data-doc="path/to/document2.pdf">Formation PPA - Format A4
+                <img src="documents.png" alt="Document 3" style="border-radius: 5%;">
+            </div>
+            <div class="document-item" data-doc="path/to/document2.pdf">Formation PPA - Questionnaire
+                <img src="documents.png" alt="Document 3" style="border-radius: 5%;">
+            </div>
+
+
+
+            <div class="document-item" data-doc="formaTaser.pdf">Formation Taser
+                <img src="documents.png" alt="Document 1" style="border-radius: 5%;">
+            </div>
+
+
+            <hr style="opacity: 0%;">
+            <hr style="opacity: 0%;">
+
+            <div class="document-item" data-doc="path/to/document2.pdf">Recrutements
+                <img src="documents.png" alt="Document 2" style="border-radius: 5%;">
+            </div>
+
+        </div>
+        <div class="document-viewer" id="documentViewer">
+            <span class="close-btn" onclick="closeViewer()">&times;</span>
+            <iframe id="documentFrame" src=""></iframe>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const documentItems = document.querySelectorAll('.document-item');
+            documentItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    openViewer(item.getAttribute('data-doc'));
+                });
+            });
+        });
+
+        function openViewer(docSrc) {
+            const viewer = document.getElementById('documentViewer');
+            const frame = document.getElementById('documentFrame');
+            frame.src = docSrc;
+            viewer.classList.add('active');
+        }
+
+        function closeViewer() {
+            const viewer = document.getElementById('documentViewer');
+            viewer.classList.remove('active');
+        }
+
+    </script>
+
+    <script src="verificationConnexion.js"></script>
+</body>
+</html>
