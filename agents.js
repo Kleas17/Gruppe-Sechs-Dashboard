@@ -21,12 +21,49 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
   const agentName = document.getElementById('agentName').value;
   const LundiDebut = document.getElementById('LundiDebut').value;
   const LundiFin = document.getElementById('LundiFin').value;
+  const MardiDebut = document.getElementById('MardiDebut').value;
+  const MardiFin = document.getElementById('MardiFin').value;
+  const MercrediDebut = document.getElementById('MercrediDebut').value;
+  const MercrediFin = document.getElementById('MercrediFin').value;
+  const JeudiDebut = document.getElementById('JeudiDebut').value;
+  const JeudiFin = document.getElementById('JeudiFin').value;
+  const VendrediDebut = document.getElementById('VendrediDebut').value;
+  const VendrediFin = document.getElementById('VendrediFin').value;
+  const SamediDebut = document.getElementById('SamediDebut').value;
+  const SamediFin = document.getElementById('SamediFin').value;
+  const DimancheDebut = document.getElementById('DimancheDebut').value;
+  const DimancheFin = document.getElementById('DimancheFin').value;
+  
   
   const agent = {
     name: agentName,
-    monday: {
+    Lundi : {
       start: LundiDebut,
       end: LundiFin
+    },
+    Mardi : {
+      start: MardiDebut,
+      end: MardiFin
+    },
+    Mercredi : {
+      start: MercrediDebut,
+      end: MercrediFin
+    },
+    Jeudi : {
+      start: JeudiDebut,
+      end: JeudiFin
+    },
+    Vendredi : {
+      start: VendrediDebut,
+      end: VendrediFin
+    },
+    Samedi : {
+      start: SamediDebut,
+      end: SamediFin
+    },
+    Dimanche : {
+      start: DimancheDebut,
+      end: DimancheFin
     }
   };
 

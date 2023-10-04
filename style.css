@@ -200,7 +200,8 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     width: 40%;
-    margin-top: 150px;
+    margin-top: 300px;
+    margin-bottom: 200px;
 }
 .agent-form input[type="text"],
 .agent-form input[type="time"] {
