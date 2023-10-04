@@ -30,12 +30,12 @@ img {
 /* Code */
 body {
     background-color: #121212; /* noir mat */
-    color: white; /* écriture blanche */
+    color: white;
     font-family: Arial, sans-serif;
 }
 
 .login-form {
-    background-color: #22543A; /* vert foncé */
+    background-color: #22543A;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -58,7 +58,7 @@ body {
 }
 
 .container {
-    position: relative; /* Ajouté pour permettre la position absolue du logo */
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,10 +66,10 @@ body {
 }
 
 .logo {
-    position: absolute; /* Logo en position absolue */
-    top: 20%; /* Distance du haut */
-    left: 50%; /* Centrage horizontal */
-    transform: translateX(-50%); /* Ajustement du centrage */
+    position: absolute;
+    top: 20%; 
+    left: 50%; 
+    transform: translateX(-50%); 
     max-width: 400px;
 }
 
@@ -86,8 +86,7 @@ body {
 
 
 .logoTop {
-    position: absolute; /* Logo en position absolue */
-/* mettre le logo en haut et au milieu */
+    position: absolute;
     margin : auto;
     top: 0;
     width: 25%;
@@ -100,8 +99,6 @@ body {
     justify-content: center;
 }
 
-
-/* ... autres styles ... */
 
 .image-container a:hover img {
     animation: pulse 1s infinite;
@@ -175,18 +172,18 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #eee; /* Ligne de séparation entre les éléments de la liste */
-    border-radius: 10px; /* Bords arrondis pour chaque élément de la liste */
+    border-bottom: 1px solid #eee;
+    border-radius: 10px; 
 }
 
 .agent-item button {
-    background-color: #ff4b5c; /* Couleur de fond du bouton de suppression */
-    color: white; /* Couleur du texte du bouton de suppression */
-    border: none; /* Supprime la bordure du bouton de suppression */
-    padding: 5px 10px; /* Espacement interne du bouton de suppression */
-    cursor: pointer; /* Change le curseur au survol du bouton de suppression */
+    background-color: #ff4b5c; 
+    color: white;
+    border: none; 
+    padding: 5px 10px; 
+    cursor: pointer; 
     margin-left: 20px;
-    border-radius: 5px; /* Bords arrondis pour le bouton de suppression */
+    border-radius: 5px; 
 }
 
 
@@ -285,7 +282,6 @@ body {
 .documents-section ul li a:hover {
     color: #ff4b5c;
 }
-/* ... Styles existants ... */
 
 .document-gallery {
     display: grid;
@@ -300,6 +296,18 @@ body {
 }
 
 .document-item:hover img {
+    transform: scale(1.1);
+    animation: pulse 1s infinite;
+    box-shadow: 0 0 15px #FFF;
+}
+
+.document-itemClick img {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.document-itemClick:hover img {
     transform: scale(1.1);
     animation: pulse 1s infinite;
     box-shadow: 0 0 15px #FFF;
@@ -327,24 +335,21 @@ body {
     position: absolute;
     right: 20px;
     top: 20px;
-    width: 40px;      /* Dimension du cercle */
+    width: 40px;      
     height: 40px;
-    background-color: #ff4b5c;  /* Couleur rouge */
-    color: white;     /* Couleur de la croix */
+    background-color: #ff4b5c; 
+    color: white;     
     font-size: 30px;
     cursor: pointer;
-    border-radius: 50%; /* Pour rendre le bouton rond */
+    border-radius: 50%; 
     text-align: center;
-    line-height: 40px;  /* Pour centrer la croix verticalement */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Une petite ombre pour un effet 3D */
+    line-height: 40px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .close-btn:hover {
-    background-color: #e4394c; /* Un rouge légèrement plus foncé au survol */
+    background-color: #e4394c; 
 }
-
-
-/* ... Autres styles existants ... */
 
 .document-viewer {
     position: fixed;
