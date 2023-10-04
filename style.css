@@ -301,6 +301,18 @@ body {
     box-shadow: 0 0 15px #FFF;
 }
 
+.document-itemClick img {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.document-itemClick:hover img {
+    transform: scale(1.1);
+    animation: pulse 1s infinite;
+    box-shadow: 0 0 15px #FFF;
+}
+
 .document-viewer {
     position: fixed;
     top: 0;
