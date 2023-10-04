@@ -18,6 +18,9 @@ async function addAgent(agent) {
 document.getElementById('addAgentForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
+  let confirmation = window.confirm("Êtes-vous sûr de vouloir ajouter cet agent?");
+  if (!confirmation) return;
+
   const agentName = document.getElementById('agentName').value;
   const LundiDebut = document.getElementById('LundiDebut').value;
   const LundiFin = document.getElementById('LundiFin').value;
@@ -33,7 +36,7 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
   const SamediFin = document.getElementById('SamediFin').value;
   const DimancheDebut = document.getElementById('DimancheDebut').value;
   const DimancheFin = document.getElementById('DimancheFin').value;
-  
+
   
   const agent = {
     name: agentName,
@@ -68,4 +71,11 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
   };
 
   await addAgent(agent);
+// Effacer les informations du formulaire
+document.getElementById('addAgentForm').reset();
+
+// Désactiver le bouton pendant 20 secondes
+let btn = document.getElementById('addAgentBtn');
+btn.disabled = true;
+setTimeout(() => btn.disabled = false, 20000); // 20000ms équivaut à 20s
 });
