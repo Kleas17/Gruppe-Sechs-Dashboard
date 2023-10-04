@@ -78,8 +78,7 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
   let btn = document.getElementById('addAgentBtn');
   btn.disabled = true;
 
-  // Logique pour le compte à rebours
-  let cooldown = 20; // secondes
+  let cooldown = 20; 
   let timerElement = document.getElementById('cooldownTimer');
   timerElement.innerHTML = cooldown + "s";
 
@@ -89,7 +88,7 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
 
     if(cooldown <= 0){
       clearInterval(interval);
-      timerElement.innerHTML = ""; // On efface le compte à rebours
+      timerElement.innerHTML = ""; 
       btn.disabled = false;
     }
   }, 1000);
