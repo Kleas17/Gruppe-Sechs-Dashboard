@@ -7,12 +7,18 @@ async function fetchAgents() {
             }
         });
 
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`Erreur du serveur avec le statut ${response.status}: ${text}`);
+        }
+
         const agents = await response.json();
         displayAgents(agents);
     } catch (err) {
         console.error("Erreur lors de la récupération des agents:", err);
     }
 }
+
 
 function displayAgents(agents) {
     const displayDiv = document.getElementById('agentsDisplay');
