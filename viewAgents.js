@@ -3,7 +3,7 @@ async function fetchAgents() {
         const response = await fetch("/api/agents");
         if (response.ok) {
             const agents = await response.json();
-            console.log("Agents reçus :", agents); // Ligne ajoutée
+            console.log("Agents reçus :", agents);
             displayAgents(agents);
         } else {
             console.error("Erreur lors de la récupération des agents:", await response.text());
@@ -31,7 +31,12 @@ function displayAgents(agents) {
         agentDiv.innerHTML = `
             <h3>${agent.name}</h3>
             ${lundiInfo}
-            <!-- Et ainsi de suite pour chaque jour -->
+            ${mardiInfo}
+            ${mercrediInfo}
+            ${jeudiInfo}
+            ${vendrediInfo}
+            ${samediInfo}
+            ${dimancheInfo}
         `;
         agentsDiv.appendChild(agentDiv);
     });
