@@ -11,7 +11,7 @@ async function addAgent(agent) {
     const result = await response.json();
     console.log(`Agent ajouté avec l'ID: ${result.insertedId}`);
   }
-  catch (err) {
+  catch (err) { 
     console.log(err);
   }
 }
