@@ -1,5 +1,9 @@
 {
+  "name": "gruppe-sechs-dashboard",
   "dependencies": {
     "mongodb": "^6.1.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.7"
   }
 }
