@@ -436,6 +436,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille égale */
     gap: 20px; /* Espace entre les éléments de grille */
+    margin-top: -200px;
 }
 
 .agent {
@@ -465,10 +466,11 @@ body {
 
 
 h2 {
-    text-align: center;
+    position: absolute;
+    text-align: center; 
     margin: 20px 0;
     padding-bottom: 10px;
     border-bottom: 2px solid #ccc;
     font-weight: bold;
-    color: #333;
+    margin-top: -500px;
 }
