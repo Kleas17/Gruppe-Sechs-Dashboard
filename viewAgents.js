@@ -3,6 +3,7 @@ async function fetchAgents() {
         const response = await fetch("/api/agents");
         if (response.ok) {
             const agents = await response.json();
+            console.log("Agents reçus :", agents); // Ligne ajoutée
             displayAgents(agents);
         } else {
             console.error("Erreur lors de la récupération des agents:", await response.text());
@@ -17,18 +18,24 @@ function displayAgents(agents) {
     agents.forEach(agent => {
         const agentDiv = document.createElement("div");
         agentDiv.className = "agent";
+        
+        let lundiInfo = agent.Lundi ? `<p>Lundi: ${agent.Lundi.start} - ${agent.Lundi.end}</p>` : '<p>Lundi: Pas de données</p>';
+        let mardiInfo = agent.Mardi ? `<p>Mardi: ${agent.Mardi.start} - ${agent.Mardi.end}</p>` : '<p>Mardi: Pas de données</p>';
+        let mercrediInfo = agent.Mercredi ? `<p>Mercredi: ${agent.Mercredi.start} - ${agent.Mercredi.end}</p>` : '<p>Mercredi: Pas de données</p>';
+        let jeudiInfo = agent.Jeudi ? `<p>Jeudi: ${agent.Jeudi.start} - ${agent.Jeudi.end}</p>` : '<p>Jeudi: Pas de données</p>';
+        let vendrediInfo = agent.Vendredi ? `<p>Vendredi: ${agent.Vendredi.start} - ${agent.Vendredi.end}</p>` : '<p>Vendredi: Pas de données</p>';
+        let samediInfo = agent.Samedi ? `<p>Samedi: ${agent.Samedi.start} - ${agent.Samedi.end}</p>` : '<p>Samedi: Pas de données</p>';
+        let dimancheInfo = agent.Dimanche ? `<p>Dimanche: ${agent.Dimanche.start} - ${agent.Dimanche.end}</p>` : '<p>Dimanche: Pas de données</p>';
+        
+
         agentDiv.innerHTML = `
             <h3>${agent.name}</h3>
-            <p>Lundi: ${agent.Lundi.start} - ${agent.Lundi.end}</p>
-            <p>Mardi: ${agent.Mardi.start} - ${agent.Mardi.end}</p>
-            <p>Mercredi: ${agent.Mercredi.start} - ${agent.Mercredi.end}</p>
-            <p>Jeudi: ${agent.Jeudi.start} - ${agent.Jeudi.end}</p>
-            <p>Vendredi: ${agent.Vendredi.start} - ${agent.Vendredi.end}</p>
-            <p>Samedi: ${agent.Samedi.start} - ${agent.Samedi.end}</p>
-            <p>Dimanche: ${agent.Dimanche.start} - ${agent.Dimanche.end}</p>
+            ${lundiInfo}
+            <!-- Et ainsi de suite pour chaque jour -->
         `;
         agentsDiv.appendChild(agentDiv);
     });
 }
+
 
 fetchAgents();
