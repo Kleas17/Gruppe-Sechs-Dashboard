@@ -13,7 +13,7 @@ async function addAgent(agent) {
   }
   catch (err) { 
     console.log(err);
-  }
+  } 
 }
 document.getElementById('addAgentForm').addEventListener('submit', async (e) => {
   e.preventDefault();

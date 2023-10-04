@@ -16,4 +16,4 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
     } else {
         errorMessage.textContent = 'Mot de passe ou nom d\'utilisateur incorrect. ';
     }
-});
+}); 
