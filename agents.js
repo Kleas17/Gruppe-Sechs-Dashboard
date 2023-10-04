@@ -15,6 +15,7 @@ async function addAgent(agent) {
     console.log(err);
   } 
 }
+
 document.getElementById('addAgentForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
