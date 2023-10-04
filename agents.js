@@ -71,11 +71,29 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
   };
 
   await addAgent(agent);
-// Effacer les informations du formulaire
-document.getElementById('addAgentForm').reset();
 
-// Désactiver le bouton pendant 20 secondes
-let btn = document.getElementById('addAgentBtn');
-btn.disabled = true;
-setTimeout(() => btn.disabled = false, 20000); // 20000ms équivaut à 20s
+  document.getElementById('addAgentForm').reset();
+
+  let btn = document.getElementById('addAgentBtn');
+  btn.disabled = true;
+
+  // Logique pour le compte à rebours
+  let cooldown = 20; // secondes
+  let timerElement = document.getElementById('cooldownTimer');
+  timerElement.innerHTML = cooldown + "s";
+
+  let interval = setInterval(() => {
+    cooldown--;
+    timerElement.innerHTML = cooldown + "s";
+
+    if(cooldown <= 0){
+      clearInterval(interval);
+      timerElement.innerHTML = ""; // On efface le compte à rebours
+      btn.disabled = false;
+    }
+  }, 1000);
 });
+
+
+
+
