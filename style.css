@@ -402,3 +402,31 @@ body {
 }
 
 
+
+.agent {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.agent:hover {
+    background-color: #f5f5f5;
+}
+
+.agent h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.agent p {
+    margin: 5px 0;
+    color: #555;
+}
+
+#agentsDisplay {
+    margin: 20px 0;
+}

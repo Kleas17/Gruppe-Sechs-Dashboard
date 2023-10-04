@@ -27,7 +27,6 @@ function displayAgents(agents) {
         let samediInfo = agent.Samedi ? `<p>Samedi: ${agent.Samedi.start} - ${agent.Samedi.end}</p>` : '<p>Samedi: Pas de données</p>';
         let dimancheInfo = agent.Dimanche ? `<p>Dimanche: ${agent.Dimanche.start} - ${agent.Dimanche.end}</p>` : '<p>Dimanche: Pas de données</p>';
         
-
         agentDiv.innerHTML = `
             <h3>${agent.name}</h3>
             ${lundiInfo}
@@ -41,6 +40,7 @@ function displayAgents(agents) {
         agentsDiv.appendChild(agentDiv);
     });
 }
+
 
 
 fetchAgents();
