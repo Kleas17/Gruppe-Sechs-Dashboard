@@ -1,21 +1,18 @@
-const { MongoClient } = require('mongodb');
-
-const uri = "mongodb+srv://Admin:150923@gruppesechs.frktaym.mongodb.net/?retryWrites=true&w=majority";
-
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
 async function addAgent(agent) {
   try {
-    await client.connect();
-    const db = client.db('Gruppe');
-    const collection = db.collection('agents');
-    const result = await collection.insertOne(agent);
+    const response = await fetch("/api/agents", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(agent)
+    });
+
+    const result = await response.json();
     console.log(`Agent ajouté avec l'ID: ${result.insertedId}`);
-  } finally {
-    await client.close();
+  }
+  catch (err) {
+    console.log(err);
   }
 }
 document.getElementById('addAgentForm').addEventListener('submit', async (e) => {
@@ -32,5 +29,6 @@ document.getElementById('addAgentForm').addEventListener('submit', async (e) => 
       end: LundiFin
     }
   };
+
   await addAgent(agent);
 });
