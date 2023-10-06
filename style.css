@@ -66,6 +66,8 @@ body {
 }
 
 .container {
+    max-height: 100vh; /* Cela garantit que le conteneur ne dépasse jamais la hauteur de la fenêtre du navigateur. */
+    overflow: hidden;
     position: relative; 
     display: flex;
     justify-content: center;
@@ -440,6 +442,8 @@ body {
 }
 /* Conteneur des agents */
 #agentsDisplay {
+    max-height: calc(100vh - 150px); /* J'ai mis 150px comme exemple pour tenir compte de l'en-tête, du logo et d'autres marges. Vous devriez ajuster cette valeur en fonction de vos besoins. */
+    overflow-y: auto; 
     margin: 20px 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille égale */
