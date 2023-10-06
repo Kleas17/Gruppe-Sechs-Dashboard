@@ -170,6 +170,9 @@ body {
     border: 1px solid #ccc;
 }
 
+.agent-card {
+    position: relative; /* Ceci est nécessaire pour que le positionnement absolu de la croix fonctionne correctement */
+}
 
 /* ... autres styles ... */
 
@@ -485,4 +488,19 @@ h2 {
     border-bottom: 2px solid #ccc;
     font-weight: bold;
     margin-top: -500px;
+}
+
+.close-btn {
+    background-color: red;
+    color: white;
+    border-radius: 50%; /* Ceci rend le fond rond */
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Ceci va positionner la croix par rapport à la div de l'agent */
+    top: 10px; /* distance depuis le haut de la div de l'agent */
+    right: 10px; /* distance depuis le côté droit de la div de l'agent */
+    cursor: pointer; /* Ceci change le curseur en main lorsque vous survolez la croix */
 }

@@ -28,6 +28,7 @@ function displayAgents(agents) {
         let dimancheInfo = agent.Dimanche ? `<p>Dimanche: ${agent.Dimanche.start} - ${agent.Dimanche.end}</p>` : '<p>Dimanche: Pas de données</p>';
         
         agentDiv.innerHTML = `
+            <span class="close-btn">×</span>
             <h3>${agent.name}</h3>
             ${lundiInfo}
             ${mardiInfo}
@@ -40,6 +41,14 @@ function displayAgents(agents) {
         agentsDiv.appendChild(agentDiv);
     });
 }
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.close-btn')) {
+        const agentCard = event.target.closest('.agent-card');
+
+        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet agent?");
+        if (!confirmation) return;
+    }
+});
 
 
 
