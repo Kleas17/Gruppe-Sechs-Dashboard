@@ -170,9 +170,6 @@ body {
     border: 1px solid #ccc;
 }
 
-.agent-card {
-    position: relative; /* Ceci est nécessaire pour que le positionnement absolu de la croix fonctionne correctement */
-}
 
 /* ... autres styles ... */
 
@@ -490,17 +487,12 @@ h2 {
     margin-top: -500px;
 }
 
-.close-btn {
-    background-color: red;
-    color: white;
-    border-radius: 50%; /* Ceci rend le fond rond */
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute; /* Ceci va positionner la croix par rapport à la div de l'agent */
-    top: 10px; /* distance depuis le haut de la div de l'agent */
-    right: 10px; /* distance depuis le côté droit de la div de l'agent */
-    cursor: pointer; /* Ceci change le curseur en main lorsque vous survolez la croix */
+.delete-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }

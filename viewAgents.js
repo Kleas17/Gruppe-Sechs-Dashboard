@@ -28,7 +28,6 @@ function displayAgents(agents) {
         let dimancheInfo = agent.Dimanche ? `<p>Dimanche: ${agent.Dimanche.start} - ${agent.Dimanche.end}</p>` : '<p>Dimanche: Pas de données</p>';
         
         agentDiv.innerHTML = `
-            <span class="close-btn">×</span>
             <h3>${agent.name}</h3>
             ${lundiInfo}
             ${mardiInfo}
@@ -41,15 +40,40 @@ function displayAgents(agents) {
         agentsDiv.appendChild(agentDiv);
     });
 }
-document.addEventListener('click', function(event) {
-    if (event.target.matches('.close-btn')) {
-        const agentCard = event.target.closest('.agent-card');
 
-        const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet agent?");
-        if (!confirmation) return;
+document.getElementById('deleteAgentBtn').addEventListener('click', async () => {
+    const agentNameToDelete = document.getElementById('deleteAgentName').value;
+
+    if (!agentNameToDelete) {
+        alert("Veuillez saisir le nom de l'agent à supprimer.");
+        return;
+    }
+
+    const confirmDelete = window.confirm(`Voulez-vous vraiment supprimer l'agent ${agentNameToDelete}?`);
+
+    if (!confirmDelete) return;
+
+    try {
+        const response = await fetch("/api/deleteAgent", { 
+            method: "POST", 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: agentNameToDelete })
+        });
+
+        const result = await response.json();
+
+        if (result.deletedCount === 1) {
+            alert(`Agent ${agentNameToDelete} supprimé avec succès.`);
+            fetchAgents();
+        } else {
+            alert(`L'agent ${agentNameToDelete} n'a pas été trouvé.`);
+        }
+
+    } catch (error) {
+        console.error("Erreur lors de la suppression de l'agent:", error);
+        alert("Une erreur est survenue lors de la suppression.");
     }
 });
-
 
 
 fetchAgents();
