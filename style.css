@@ -448,7 +448,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille égale */
     gap: 20px; /* Espace entre les éléments de grille */
-
+    margin-top: 150px;
 }
 
 .agent {
