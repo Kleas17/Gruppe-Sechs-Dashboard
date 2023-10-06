@@ -51,20 +51,27 @@ document.getElementById('deleteAgentBtn').addEventListener('click', async () => 
 
     const confirmDelete = window.confirm(`Voulez-vous vraiment supprimer l'agent ${agentNameToDelete}?`);
 
-    try {
-        const response = await
-        fetch("/api/deleteAgent", { 
-            method: "POST", 
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: agentNameToDelete })
-        })
-        db.agent.findOneAndDelete({ name: agentNameToDelete })
+    if (confirmDelete) {
+        try {
+            const response = await fetch("/api/deleteAgent", { 
+                method: "POST", 
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: agentNameToDelete })
+            });
 
-        if (confirmDelete) {
-            alert(`L'agent ${agentNameToDelete} a été supprimé.`);
+            if (response.ok) {
+                const result = await response.json();
+                if (result && result.message) {
+                    alert(result.message);
+                } else {
+                    alert(`L'agent ${agentNameToDelete} a été supprimé.`);
+                }
+            } else {
+                console.error("Erreur lors de la suppression de l'agent:", await response.text());
+            }
+        } catch (error) {
+            console.error("Erreur lors de la suppression de l'agent:", error);
         }
-    } catch (error) {
-        console.error("Erreur lors de la suppression de l'agent:", error);
     }
 });
 
