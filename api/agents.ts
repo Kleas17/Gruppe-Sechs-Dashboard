@@ -25,6 +25,20 @@ export default async function handler(
       return response.status(200).json(agents);
     }
 
+    if (request.method === "DELETE") {
+      const { name } = request.body;
+      if (!name) {
+          return response.status(400).json({ message: "Le nom de l'agent est requis pour la suppression." });
+      }
+      
+      const result = await collection.deleteOne({ name: name });
+      if (result.deletedCount === 0) {
+          return response.status(404).json({ message: "Agent non trouvé." });
+      }
+      
+      return response.status(200).json({ message: "Agent supprimé avec succès." });
+  }
+
     // Si la méthode n'est ni POST ni GET
     return response.status(405).json({ message: "Method not allowed" });
     
