@@ -14,19 +14,13 @@ export default async function handler(
     const collection = db.collection('agents');
   
     // Gérer la requête POST pour ajouter un agent
-    if (request.method === "POST" && request.url === "/api/addAgent") {
+    if (request.method === "POST") {
       const result = await collection.insertOne(request.body);
-      return response.status(200).json(result);
-    }
-
-    // Gérer la requête POST pour supprimer un agent par son nom
-    if (request.method === "POST" && request.url === "/api/deleteAgent") {
-      const result = await collection.deleteOne({ name: request.body.name });
       return response.status(200).json(result);
     }
   
     // Gérer la requête GET pour récupérer tous les agents
-    if (request.method === "GET" && request.url === "/api/getAgents") {
+    if (request.method === "GET") {
       const agents = await collection.find().toArray();
       return response.status(200).json(agents);
     }
