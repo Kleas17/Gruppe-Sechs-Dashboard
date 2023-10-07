@@ -63,6 +63,8 @@
         };
 
         async function getAgentsDisponibles(jour, start, end) {
+            console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
+
             try {
                 const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
                 if (response.ok) {
