@@ -64,6 +64,7 @@ document.getElementById('deleteAgentBtn').addEventListener('click', async () => 
                 if (result && result.message) {
                     alert(result.message);
                 } else {
+                    db.collection("agents").doc(agentNameToDelete).delete();
                     alert(`L'agent ${agentNameToDelete} a été supprimé.`);
                 }
             } else {
