@@ -63,10 +63,7 @@ document.getElementById('deleteAgentBtn').addEventListener('click', async () => 
                 const result = await response.json();
                 if (result && result.message) {
                     alert(result.message);
-                } else {
-                    alert(`L'agent ${agentNameToDelete} a été supprimé.`);
-                    location.reload(true);
-                }
+                } else {}
             } else {
                 console.error("Erreur lors de la suppression de l'agent:", await response.text());
             }
