@@ -54,7 +54,7 @@ document.getElementById('deleteAgentBtn').addEventListener('click', async () => 
     if (confirmDelete) {
         try {
             const response = await fetch("/api/agents", { 
-                method: "POST", 
+                method: "DELETE", 
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: agentNameToDelete })
             });
