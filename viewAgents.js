@@ -76,4 +76,8 @@ document.getElementById('deleteAgentBtn').addEventListener('click', async () => 
     }
 });
 
+document.getElementById('refreshPageBtn').addEventListener('click', function() {
+    location.reload();
+});
+
 fetchAgents();
