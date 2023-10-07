@@ -5,13 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Voir les agents</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logoTopAgent {
+            display: block;
+            margin: 0 auto;
+            width: 60%;
+            max-width: 300px;
+        }
+
+        .arrow {
+            width: 20px;
+            margin-bottom: 20px;
+        }
+
+        .delete-menu {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .delete-menu h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        #deleteAgentName {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #deleteAgentBtn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ff4b5c;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <a href="gruppeSechs.html"><img src="fleche.png" class="arrow"></a>
-
+        <a href="gruppeSechs.html"><img src="fleche.png" class="arrow" alt="Retour"></a>
         <img src="logo.png" alt="Logo" class="logoTopAgent">
-
+        
         <div class="delete-menu">
             <h3>Supprimer un Agent</h3>
             <input type="text" id="deleteAgentName" placeholder="Nom de l'agent" required>
