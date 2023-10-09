@@ -46,6 +46,7 @@
             },
             {
                 "lieux": "Vignoble",
+                "nbAgents": 2,
                 "lundiDebut": "18:00",
                 "lundiFin": "20:00",
                 "mardiDebut": "18:00",
@@ -89,7 +90,8 @@
                 
                 if (debut && fin) {
                     const agentsDisponibles = await getAgentsDisponibles(jour, debut, fin);
-    
+                    console.log("Agents récupérés:", agentsDisponibles);
+
                     output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
                     output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
                     output += `<strong>Début:</strong> ${debut}<br>`;
