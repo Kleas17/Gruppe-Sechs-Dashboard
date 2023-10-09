@@ -69,22 +69,22 @@
         }
     
         async function generer() {
-            const jour = document.getElementById('jourSelect').value.toLowerCase(); // Convert to lowercase to match the structure
+            const jour = document.getElementById('jourSelect').value;
             let output = "";
-    
+
             for (const dispatch of dispatches.dispatches) {
-                const start = dispatch[jour].start;
-                const end = dispatch[jour].end;
-    
-                if (start && end) {
+                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
+                    const start = dispatch[jour].start;
+                    const end = dispatch[jour].end;
+                    
                     const agentsDisponibles = await getAgentsDisponibles(jour, start, end);
                     console.log("Agents récupérés:", agentsDisponibles);
-    
+
                     output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
                     output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
                     output += `<strong>Start:</strong> ${start}<br>`;
                     output += `<strong>End:</strong> ${end}<br>`;
-    
+
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
                         for (const agent of agentsDisponibles) {
@@ -94,12 +94,13 @@
                     } else {
                         output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
                     }
-    
+
                     output += "</p>";
                 }
             }
             document.getElementById('resultat').innerHTML = output;
         }
+
     </script>
     
 </body>
