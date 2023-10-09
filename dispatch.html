@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sélectionnez un jour</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div>
+    <div class="selection-container">
         <label for="jourSelect">Sélectionnez un jour:</label>
         <select id="jourSelect">
             <option value="Lundi">Lundi</option>
@@ -23,8 +24,7 @@
         <button onclick="generer()">Générer</button>
     </div>
 
-    <div id="resultat"></div>
-
+    <div id="resultat" class="resultat-container"></div>
     <script>
         const dispatches = {
             "dispatches": [
@@ -109,11 +109,10 @@
                     agentsDisponibles = shuffle(agentsDisponibles);
         
                     console.log("Agents après mélange:", agentsDisponibles);
-        
                     output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
                     output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-                    output += `<strong>Start:</strong> ${start}<br>`;
-                    output += `<strong>End:</strong> ${end}<br>`;
+                    output += `<strong>Début :</strong> ${start}<br>`;
+                    output += `<strong>Fin :</strong> ${end}<br>`;
         
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
@@ -125,8 +124,12 @@
                         }
         
                         output += "</ul>";
+                        output += `<br>`;
+                        output += `<hr>`;
                     } else {
                         output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
+                        output += `<br>`;
+                        output += `<hr>`;
                     }
         
                     output += "</p>";
