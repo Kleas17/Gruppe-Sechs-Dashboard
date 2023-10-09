@@ -79,17 +79,24 @@
         }
     
         async function generer() {
-    const jour = document.getElementById('jourSelect').value; // Restons avec la valeur initiale car les clés sont en majuscules.
+    const jour = document.getElementById('jourSelect').value;
     let output = "";
 
+    // Créer un ensemble pour suivre les agents déjà assignés
+    let assignedAgents = new Set();
+
     for (const dispatch of dispatches.dispatches) {
-        // Vérifiez si le jour et les propriétés start/end existent avant de les utiliser
         if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
             const start = dispatch[jour].start;
             const end = dispatch[jour].end;
             
-            const agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-            console.log("Agents récupérés:", agentsDisponibles);
+            let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+            console.log("Agents récupérés avant filtre:", agentsDisponibles);
+
+            // Filtrer les agents déjà assignés
+            agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
+
+            console.log("Agents après filtre:", agentsDisponibles);
 
             output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
             output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
@@ -99,9 +106,10 @@
             if (agentsDisponibles.length > 0) {
                 output += "<strong>Agents disponibles :</strong><ul>";
 
-                // Limiter la liste d'agents à la valeur de nbAgents
                 for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                     output += `<li>${agentsDisponibles[i].name}</li>`;
+                    // Ajouter l'agent à l'ensemble des agents assignés
+                    assignedAgents.add(agentsDisponibles[i].name);
                 }
 
                 output += "</ul>";
