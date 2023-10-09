@@ -60,6 +60,15 @@
                 }
             ]
         };
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+            }
+            return array;
+        }
+        
     
         async function getAgentsDisponibles(jour, start, end) {
             console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
@@ -79,49 +88,61 @@
         }
     
         async function generer() {
-    const jour = document.getElementById('jourSelect').value;
-    let output = "";
-
-    // Créer un ensemble pour suivre les agents déjà assignés
-    let assignedAgents = new Set();
-
-    for (const dispatch of dispatches.dispatches) {
-        if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
-            const start = dispatch[jour].start;
-            const end = dispatch[jour].end;
-            
-            let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-            console.log("Agents récupérés avant filtre:", agentsDisponibles);
-
-            // Filtrer les agents déjà assignés
-            agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
-
-            console.log("Agents après filtre:", agentsDisponibles);
-
-            output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
-            output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-            output += `<strong>Start:</strong> ${start}<br>`;
-            output += `<strong>End:</strong> ${end}<br>`;
-
-            if (agentsDisponibles.length > 0) {
-                output += "<strong>Agents disponibles :</strong><ul>";
-
-                for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
-                    output += `<li>${agentsDisponibles[i].name}</li>`;
-                    // Ajouter l'agent à l'ensemble des agents assignés
-                    assignedAgents.add(agentsDisponibles[i].name);
+            const jour = document.getElementById('jourSelect').value;
+            let output = "";
+        
+            // Créer un ensemble pour suivre les agents déjà assignés
+            let assignedAgents = new Set();
+        
+            for (const dispatch of dispatches.dispatches) {
+                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
+                    const start = dispatch[jour].start;
+                    const end = dispatch[jour].end;
+                    
+                    let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+                    console.log("Agents récupérés avant filtre:", agentsDisponibles);
+        
+                    // Filtrer les agents déjà assignés
+                    agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
+                    
+                    // Mélanger la liste des agents disponibles
+                    agentsDisponibles = shuffle(agentsDisponibles);
+        
+                    console.log("Agents après mélange:", agentsDisponibles);
+        
+                    output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
+                    output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
+                    output += `<strong>Start:</strong> ${start}<br>`;
+                    output += `<strong>End:</strong> ${end}<br>`;
+        
+                    if (agentsDisponibles.length > 0) {
+                        output += "<strong>Agents disponibles :</strong><ul>";
+        
+                        for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
+                            output += `<li>${agentsDisponibles[i].name}</li>`;
+                            // Ajouter l'agent à l'ensemble des agents assignés
+                            assignedAgents.add(agentsDisponibles[i].name);
+                        }
+        
+                        output += "</ul>";
+                    } else {
+                        output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
+                    }
+        
+                    output += "</p>";
                 }
-
-                output += "</ul>";
-            } else {
-                output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
             }
-
-            output += "</p>";
+            document.getElementById('resultat').innerHTML = output;
         }
-    }
-    document.getElementById('resultat').innerHTML = output;
-}
+        
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+            }
+            return array;
+        }
+        
 
 
     </script>
