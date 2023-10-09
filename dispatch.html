@@ -79,37 +79,42 @@
         }
     
         async function generer() {
-            const jour = document.getElementById('jourSelect').value;
-            let output = "";
+    const jour = document.getElementById('jourSelect').value; // Restons avec la valeur initiale car les clés sont en majuscules.
+    let output = "";
 
-            for (const dispatch of dispatches.dispatches) {
-                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
-                    const start = dispatch[jour].start;
-                    const end = dispatch[jour].end;
-                    
-                    const agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    console.log("Agents récupérés:", agentsDisponibles);
+    for (const dispatch of dispatches.dispatches) {
+        // Vérifiez si le jour et les propriétés start/end existent avant de les utiliser
+        if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
+            const start = dispatch[jour].start;
+            const end = dispatch[jour].end;
+            
+            const agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+            console.log("Agents récupérés:", agentsDisponibles);
 
-                    output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
-                    output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-                    output += `<strong>Start:</strong> ${start}<br>`;
-                    output += `<strong>End:</strong> ${end}<br>`;
+            output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
+            output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
+            output += `<strong>Start:</strong> ${start}<br>`;
+            output += `<strong>End:</strong> ${end}<br>`;
 
-                    if (agentsDisponibles.length > 0) {
-                        output += "<strong>Agents disponibles :</strong><ul>";
-                        for (const agent of agentsDisponibles) {
-                            output += `<li>${agent.name}</li>`;
-                        }
-                        output += "</ul>";
-                    } else {
-                        output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
-                    }
+            if (agentsDisponibles.length > 0) {
+                output += "<strong>Agents disponibles :</strong><ul>";
 
-                    output += "</p>";
+                // Limiter la liste d'agents à la valeur de nbAgents
+                for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
+                    output += `<li>${agentsDisponibles[i].name}</li>`;
                 }
+
+                output += "</ul>";
+            } else {
+                output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
             }
-            document.getElementById('resultat').innerHTML = output;
+
+            output += "</p>";
         }
+    }
+    document.getElementById('resultat').innerHTML = output;
+}
+
 
     </script>
     
