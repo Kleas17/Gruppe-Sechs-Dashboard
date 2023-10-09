@@ -12,13 +12,13 @@
     <div>
         <label for="jourSelect">Sélectionnez un jour:</label>
         <select id="jourSelect">
-            <option value="lundi">Lundi</option>
-            <option value="mardi">Mardi</option>
-            <option value="mercredi">Mercredi</option>
-            <option value="jeudi">Jeudi</option>
-            <option value="vendredi">Vendredi</option>
-            <option value="samedi">Samedi</option>
-            <option value="dimanche">Dimanche</option>
+            <option value="Lundi">Lundi</option>
+            <option value="Mardi">Mardi</option>
+            <option value="Mercredi">Mercredi</option>
+            <option value="Jeudi">Jeudi</option>
+            <option value="Vendredi">Vendredi</option>
+            <option value="Samedi">Samedi</option>
+            <option value="Dimanche">Dimanche</option>
         </select>
         <button onclick="generer()">Générer</button>
     </div>
@@ -28,44 +28,32 @@
     <script>
         const dispatches = {
             "dispatches": [
-            {
-                "lieux": "LSMC",
-                "nbAgents": 2,
-                "lundiDebut": "20:00",
-                "lundiFin": "00:00",
-                "mardiDebut": "20:00",
-                "mardiFin": "00:00",
-                "mercrediDebut": "20:00",
-                "mercrediFin": "00:00",
-                "jeudiDebut": "20:00",
-                "jeudiFin": "00:00",
-                "vendrediDebut": "20:00",
-                "vendrediFin": "00:00",
-                "samediDebut": "20:00",
-                "samediFin": "00:00",
-            },
-            {
-                "lieux": "Vignoble",
-                "nbAgents": 2,
-                "lundiDebut": "18:00",
-                "lundiFin": "20:00",
-                "mardiDebut": "18:00",
-                "mardiFin": "20:00",
-                "mercrediDebut": "18:00",
-                "mercrediFin": "20:00",
-                "jeudiDebut": "18:00",
-                "jeudiFin": "20:00",
-                "vendrediDebut": "18:00",
-                "vendrediFin": "20:00",
-                "samediDebut": "18:00",
-                "samediFin": "20:00",
-            }
-            ]        
+                {
+                    "lieux": "LSMC",
+                    "nbAgents": 2,
+                    "Lundi": { "start": "20:00", "end": "00:00" },
+                    "Mardi": { "start": "20:00", "end": "00:00" },
+                    "Mercredi": { "start": "20:00", "end": "00:00" },
+                    "Jeudi": { "start": "20:00", "end": "00:00" },
+                    "Vendredi": { "start": "20:00", "end": "00:00" },
+                    "Samedi": { "start": "20:00", "end": "00:00" }
+                },
+                {
+                    "lieux": "Vignoble",
+                    "nbAgents": 2,
+                    "Lundi": { "start": "18:00", "end": "20:00" },
+                    "Mardi": { "start": "18:00", "end": "20:00" },
+                    "Mercredi": { "start": "18:00", "end": "20:00" },
+                    "Jeudi": { "start": "18:00", "end": "20:00" },
+                    "Vendredi": { "start": "18:00", "end": "20:00" },
+                    "Samedi": { "start": "18:00", "end": "20:00" }
+                }
+            ]
         };
-
+    
         async function getAgentsDisponibles(jour, start, end) {
             console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
-
+    
             try {
                 const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
                 if (response.ok) {
@@ -81,22 +69,22 @@
         }
     
         async function generer() {
-            const jour = document.getElementById('jourSelect').value;
+            const jour = document.getElementById('jourSelect').value.toLowerCase(); // Convert to lowercase to match the structure
             let output = "";
-        
+    
             for (const dispatch of dispatches.dispatches) {
-                const debut = dispatch[`${jour}Debut`];
-                const fin = dispatch[`${jour}Fin`];
-                
-                if (debut && fin) {
-                    const agentsDisponibles = await getAgentsDisponibles(jour, debut, fin);
+                const start = dispatch[jour].start;
+                const end = dispatch[jour].end;
+    
+                if (start && end) {
+                    const agentsDisponibles = await getAgentsDisponibles(jour, start, end);
                     console.log("Agents récupérés:", agentsDisponibles);
-
+    
                     output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
                     output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-                    output += `<strong>Début:</strong> ${debut}<br>`;
-                    output += `<strong>Fin:</strong> ${fin}<br>`;
-                        
+                    output += `<strong>Start:</strong> ${start}<br>`;
+                    output += `<strong>End:</strong> ${end}<br>`;
+    
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
                         for (const agent of agentsDisponibles) {
@@ -113,6 +101,7 @@
             document.getElementById('resultat').innerHTML = output;
         }
     </script>
+    
 </body>
 
 </html>
