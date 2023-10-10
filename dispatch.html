@@ -6,68 +6,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sélectionnez un jour</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="particles-js"></div><script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
-    <style>#particles-js{ position:absolute; width: 100%; height: 100%; background-size: cover; background-position: 50% 50%; z-index: -1;}</style>       
-    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
-    <div>
+    <div class="selection-container">
         <label for="jourSelect">Sélectionnez un jour:</label>
         <select id="jourSelect">
-            <option value="lundi">Lundi</option>
-            <option value="mardi">Mardi</option>
-            <option value="mercredi">Mercredi</option>
-            <option value="jeudi">Jeudi</option>
-            <option value="vendredi">Vendredi</option>
-            <option value="samedi">Samedi</option>
-            <option value="dimanche">Dimanche</option>
+            <option value="Lundi">Lundi</option>
+            <option value="Mardi">Mardi</option>
+            <option value="Mercredi">Mercredi</option>
+            <option value="Jeudi">Jeudi</option>
+            <option value="Vendredi">Vendredi</option>
+            <option value="Samedi">Samedi</option>
+            <option value="Dimanche">Dimanche</option>
         </select>
         <button onclick="generer()">Générer</button>
     </div>
 
-    <div id="resultat"></div>
-
+    <div id="resultat" class="resultat-container"></div>
     <script>
         const dispatches = {
             "dispatches": [
-            {
-                "lieux": "LSMC",
-                "nbAgents": 2,
-                "lundiDebut": "20:00",
-                "lundiFin": "00:00",
-                "mardiDebut": "20:00",
-                "mardiFin": "00:00",
-                "mercrediDebut": "20:00",
-                "mercrediFin": "00:00",
-                "jeudiDebut": "20:00",
-                "jeudiFin": "00:00",
-                "vendrediDebut": "20:00",
-                "vendrediFin": "00:00",
-                "samediDebut": "20:00",
-                "samediFin": "00:00",
-            },
-            {
-                "lieux": "Vignoble",
-                "lundiDebut": "18:00",
-                "lundiFin": "20:00",
-                "mardiDebut": "18:00",
-                "mardiFin": "20:00",
-                "mercrediDebut": "18:00",
-                "mercrediFin": "20:00",
-                "jeudiDebut": "18:00",
-                "jeudiFin": "20:00",
-                "vendrediDebut": "18:00",
-                "vendrediFin": "20:00",
-                "samediDebut": "18:00",
-                "samediFin": "20:00",
-            }
-            ]        
+                {
+                    "lieux": "LSMC",
+                    "nbAgents": 2,
+                    "Lundi": { "start": "20:00", "end": "00:00" },
+                    "Mardi": { "start": "20:00", "end": "00:00" },
+                    "Mercredi": { "start": "20:00", "end": "00:00" },
+                    "Jeudi": { "start": "20:00", "end": "00:00" },
+                    "Vendredi": { "start": "20:00", "end": "00:00" },
+                    "Samedi": { "start": "20:00", "end": "00:00" }
+                },
+                {
+                    "lieux": "Vignoble",
+                    "nbAgents": 2,
+                    "Lundi": { "start": "18:00", "end": "20:00" },
+                    "Mardi": { "start": "18:00", "end": "20:00" },
+                    "Mercredi": { "start": "18:00", "end": "20:00" },
+                    "Jeudi": { "start": "18:00", "end": "20:00" },
+                    "Vendredi": { "start": "18:00", "end": "20:00" },
+                    "Samedi": { "start": "18:00", "end": "20:00" }
+                },
+                {
+                    "lieux": "pacific run",
+                    "nbAgents": 2,
+                    "Lundi": { "start": "18:00", "end": "20:00" },
+                    "Mardi": { "start": "18:00", "end": "20:00" },
+                    "Mercredi": { "start": "18:00", "end": "20:00" },
+                    "Jeudi": { "start": "18:00", "end": "20:00" },
+                    "Vendredi": { "start": "18:00", "end": "20:00" },
+                    "Samedi": { "start": "18:00", "end": "20:00" }
+                }
+            ]
         };
 
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+            }
+            return array;
+        }
+        
+    
         async function getAgentsDisponibles(jour, start, end) {
             console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
-
+    
             try {
                 const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
                 if (response.ok) {
@@ -86,34 +91,65 @@
             const jour = document.getElementById('jourSelect').value;
             let output = "";
         
+            // Créer un ensemble pour suivre les agents déjà assignés
+            let assignedAgents = new Set();
+        
             for (const dispatch of dispatches.dispatches) {
-                const debut = dispatch[`${jour}Debut`];
-                const fin = dispatch[`${jour}Fin`];
-                
-                if (debut && fin) {
-                    const agentsDisponibles = await getAgentsDisponibles(jour, debut, fin);
-    
+                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
+                    const start = dispatch[jour].start;
+                    const end = dispatch[jour].end;
+                    
+                    let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+                    console.log("Agents récupérés avant filtre:", agentsDisponibles);
+        
+                    // Filtrer les agents déjà assignés
+                    agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
+                    
+                    // Mélanger la liste des agents disponibles
+                    agentsDisponibles = shuffle(agentsDisponibles);
+        
+                    console.log("Agents après mélange:", agentsDisponibles);
                     output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
                     output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-                    output += `<strong>Début:</strong> ${debut}<br>`;
-                    output += `<strong>Fin:</strong> ${fin}<br>`;
-                        
+                    output += `<strong>Début :</strong> ${start}<br>`;
+                    output += `<strong>Fin :</strong> ${end}<br>`;
+        
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
-                        for (const agent of agentsDisponibles) {
-                            output += `<li>${agent.name}</li>`;
+        
+                        for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
+                            output += `<li>${agentsDisponibles[i].name}</li>`;
+                            // Ajouter l'agent à l'ensemble des agents assignés
+                            assignedAgents.add(agentsDisponibles[i].name);
                         }
+        
                         output += "</ul>";
+                        output += `<br>`;
+                        output += `<hr>`;
                     } else {
                         output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
+                        output += `<br>`;
+                        output += `<hr>`;
                     }
-    
+        
                     output += "</p>";
                 }
             }
             document.getElementById('resultat').innerHTML = output;
         }
+        
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+            }
+            return array;
+        }
+        
+
+
     </script>
+    
 </body>
 
 </html>
