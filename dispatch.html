@@ -64,7 +64,7 @@
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+                [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
         }
@@ -91,7 +91,6 @@
             const jour = document.getElementById('jourSelect').value;
             let output = "";
         
-            // Créer un ensemble pour suivre les agents déjà assignés
             let assignedAgents = new Set();
         
             for (const dispatch of dispatches.dispatches) {
@@ -102,10 +101,8 @@
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
                     console.log("Agents récupérés avant filtre:", agentsDisponibles);
         
-                    // Filtrer les agents déjà assignés
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
                     
-                    // Mélanger la liste des agents disponibles
                     agentsDisponibles = shuffle(agentsDisponibles);
         
                     console.log("Agents après mélange:", agentsDisponibles);
@@ -119,7 +116,6 @@
         
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                             output += `<li>${agentsDisponibles[i].name}</li>`;
-                            // Ajouter l'agent à l'ensemble des agents assignés
                             assignedAgents.add(agentsDisponibles[i].name);
                         }
         
@@ -141,7 +137,7 @@
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; // échange les éléments
+                [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
         }
