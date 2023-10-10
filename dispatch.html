@@ -29,6 +29,16 @@
     </div>
 
     <div id="resultat" class="resultat-container"></div>
+    <style>
+    .agent-info {
+        background-color: #f0f0f0;
+        border: 2px solid #333;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        display: inline;
+    }
+    </style>
     <script>
         const dispatches = {
             "dispatches": [
@@ -117,12 +127,12 @@
         
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
-        
+                    
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
-                            output += `<li>${agentsDisponibles[i].name}</li>`;
+                            output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
                             assignedAgents.add(agentsDisponibles[i].name);
                         }
-        
+                    
                         output += "</ul>";
                         output += `<br>`;
                         output += `<hr>`;
@@ -131,6 +141,7 @@
                         output += `<br>`;
                         output += `<hr>`;
                     }
+                    
         
                     output += "</p>";
                 }
