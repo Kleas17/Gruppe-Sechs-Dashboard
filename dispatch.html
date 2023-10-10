@@ -7,13 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sélectionnez un jour</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+
+        .selection-container,
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .resultat-container2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            opacity: 100%;
+            text-align: center;
+        }
+
+        .card {
+            width: calc(30% - 30px);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="particles-js"></div><script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
     <style>#particles-js{ position:absolute; width: 100%; height: 100%; background-size: cover; background-position: 50% 50%; z-index: -1;}</style>       
-    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.05,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
-    
+    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.8,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
+
     <div class="selection-container">
         <label for="jourSelect">Sélectionnez un jour:</label>
         <select id="jourSelect">
@@ -39,11 +71,14 @@
         display: inline;
     }
     </style>
+    <div id="resultat" class="resultat-container2"></div>
+
     <script>
         const dispatches = {
             "dispatches": [
                 {
                     "lieux": "LSMC",
+                    "color": "#e57373",
                     "nbAgents": 2,
                     "Lundi": { "start": "20:00", "end": "00:00" },
                     "Mardi": { "start": "20:00", "end": "00:00" },
@@ -54,6 +89,7 @@
                 },
                 {
                     "lieux": "Vignoble",
+                    "color": "#81c784",
                     "nbAgents": 2,
                     "Lundi": { "start": "18:00", "end": "20:00" },
                     "Mardi": { "start": "18:00", "end": "20:00" },
@@ -64,6 +100,7 @@
                 },
                 {
                     "lieux": "pacific run",
+                    "color": "#81c784",
                     "nbAgents": 2,
                     "Lundi": { "start": "18:00", "end": "20:00" },
                     "Mardi": { "start": "18:00", "end": "20:00" },
@@ -83,6 +120,10 @@
             return array;
         }
         
+        function showResult() {
+            document.getElementById('resultat').style.opacity = '1';
+        }
+
     
         async function getAgentsDisponibles(jour, start, end) {
             console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
@@ -104,58 +145,50 @@
         async function generer() {
             const jour = document.getElementById('jourSelect').value;
             let output = "";
-        
+
             let assignedAgents = new Set();
-        
+
             for (const dispatch of dispatches.dispatches) {
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
                     const start = dispatch[jour].start;
                     const end = dispatch[jour].end;
-                    
+
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    console.log("Agents récupérés avant filtre:", agentsDisponibles);
-        
+
+                    // Filtrer les agents déjà assignés
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name));
-                    
+
+                    // Mélanger les agents disponibles pour une affectation aléatoire
                     agentsDisponibles = shuffle(agentsDisponibles);
-        
-                    console.log("Agents après mélange:", agentsDisponibles);
-                    output += `<p><strong>Lieux:</strong> ${dispatch.lieux}<br>`;
-                    output += `<strong>Nombre d'agents:</strong> ${dispatch.nbAgents}<br>`;
-                    output += `<strong>Début :</strong> ${start}<br>`;
-                    output += `<strong>Fin :</strong> ${end}<br>`;
-        
+
+                    // Commencer la création de la carte
+                    
+                    output += `<div class="card" style="background-color:${dispatch.color}">`;
+                    output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
+                    output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
+                    output += `<p><strong>Début :</strong> ${start}</p>`;
+                    output += `<p><strong>Fin :</strong> ${end}</p>`;
+
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
-                    
+        
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
-                            output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
+                            output += `<li>${agentsDisponibles[i].name}</li>`;
                             assignedAgents.add(agentsDisponibles[i].name);
                         }
-                    
+        
                         output += "</ul>";
-                        output += `<br>`;
-                        output += `<hr>`;
                     } else {
-                        output += "<strong>Aucun agent disponible pour ce créneau.</strong>";
-                        output += `<br>`;
-                        output += `<hr>`;
+                        output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
                     }
-                    
         
                     output += "</p>";
                 }
             }
             document.getElementById('resultat').innerHTML = output;
+            showResult()
         }
-        
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+
         
 
 
