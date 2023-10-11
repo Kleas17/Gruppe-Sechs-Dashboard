@@ -224,23 +224,6 @@
             }
             return array;
         }
-
-        function isAvailable(agent, start, end) {
-            const startHour = parseInt(start.split(':')[0]);
-            const startMinute = parseInt(start.split(':')[1]);
-            const endHour = parseInt(end.split(':')[0]);
-            const endMinute = parseInt(end.split(':')[1]);
-
-            for (let assignedInterval of assignedAgents[agent.name] || []) {
-                const assignedStart = assignedInterval[0];
-                const assignedEnd = assignedInterval[1];
-        
-                if (!(startHour * 60 + startMinute >= assignedEnd || endHour * 60 + endMinute <= assignedStart)) {
-                    return false;
-                }
-            }
-            return true;
-        }
         
         function showResult() {
             document.getElementById('resultat').style.opacity = '1';
@@ -278,51 +261,41 @@
         }
     
         let absents = new Set(); // Stocker les agents absents
-        let assignedAgents = {}; // Utilisé pour stocker des intervalles d'affectation
-
+        
         async function generer() {
-            // Réinitialiser les absents et les agents assignés
             absents.clear();
-            let assignedAgents = new Set();
-        
-            // Récupérer le jour sélectionné
             const jour = document.getElementById('jourSelect').value;
-        
-            // Recueillir les agents absents
             document.querySelectorAll('.selection-container input').forEach(input => {
                 if (input.value) {
                     absents.add(input.value.trim());
                 }
             });
         
-            let output = ""; // Pour stocker le contenu de sortie
+            let output = "";
+            let assignedAgents = new Set();
         
-            // Parcourir chaque dispatch
             for (const dispatch of dispatches.dispatches) {
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
-                    const { start, end } = dispatch[jour]; // Décomposition pour simplifier la référence
+                    const start = dispatch[jour].start;
+                    const end = dispatch[jour].end;
         
-                    // Obtenir la liste des agents disponibles pour le créneau donné
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
         
-                    // Filtrer les agents déjà assignés et ceux qui sont absents
+                    // Filtrer les agents déjà assignés et les agents absents
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
         
-                    // Mélanger la liste des agents pour une allocation aléatoire
+                    // Mélanger les agents disponibles pour une affectation aléatoire
                     agentsDisponibles = shuffle(agentsDisponibles);
         
-                    // Créer le contenu de la carte de sortie pour ce dispatch
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
                     output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
                     output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
                     output += `<p><strong>Début :</strong> ${start}</p>`;
                     output += `<p><strong>Fin :</strong> ${end}</p>`;
         
-                    // S'il y a des agents disponibles pour ce dispatch
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents disponibles :</strong><ul>";
         
-                        // Assigner les agents et ajouter à la sortie
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                             output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
                             assignedAgents.add(agentsDisponibles[i].name); // Marquer l'agent comme assigné
@@ -336,12 +309,9 @@
                     output += `</div>`;  // Fin de la carte
                 }
             }
-        
-            // Afficher les résultats
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
-        
         
 
         
