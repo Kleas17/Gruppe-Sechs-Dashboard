@@ -59,6 +59,90 @@
             display: block;
         }
         
+        
+        .absents-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .absent {
+            padding: 10px 15px;
+            font-size: 16px; 
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            width: 250px;
+            outline: none;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .absent:focus {
+            border-color: #007BFF;
+            box-shadow: 2px 2px 12px rgba(0, 120, 255, 0.4);
+        }
+        .selection-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+/* Styliser le <select> lorsqu'il n'est pas déroulé */
+    #jourSelect {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+        outline: none;
+        width: 250px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        appearance: none; /* Supprime l'apparence par défaut dans certains navigateurs */
+        background-color: #f0f0f0;
+    }
+    
+    #jourSelect:focus {
+        border-color: #007BFF;
+        box-shadow: 2px 2px 12px rgba(0, 120, 255, 0.4);
+    }
+    
+    /* Styliser les <option> */
+    #jourSelect option {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    #jourSelect option:last-child {
+        border-bottom: none;
+    }
+    
+    /* Si vous voulez également styliser le bouton à côté */
+    button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        border: none;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    select[size], select[multiple] {
+        background-color: #f5f5f5;  /* couleur de fond */
+        border-radius: 10px; /* arrondi */
+    }
+    
+        
+        
     </style>
     
     
@@ -70,7 +154,7 @@
     <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.8,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
     <div class="selection-container">
         <label for="jourSelect">Sélectionnez un jour:</label>
-        <select id="jourSelect">
+        <select size="7" id="jourSelect">
             <option value="Lundi">Lundi</option>
             <option value="Mardi">Mardi</option>
             <option value="Mercredi">Mercredi</option>
