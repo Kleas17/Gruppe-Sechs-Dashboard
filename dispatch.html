@@ -81,11 +81,12 @@
         </select>
         <button onclick="generer()">Générer</button>
 
-        <select class="absent">
-            <option value="">Sélectionnez un agent absent</option>
-            <!-- options générées dynamiquement -->
-        </select>
-        
+        <div class="absents-container">
+            <label>Absents:</label>
+            <div id="absents-list">
+                <input type="text" class="absent" placeholder="Nom de l'absent">
+            </div>
+        </div>
         
     </div>
 
@@ -142,29 +143,18 @@
             document.getElementById('resultat').style.opacity = '1';
         }
 
-        document.addEventListener('change', function(e) {
+        document.addEventListener('input', function(e) {
             if (e.target.classList.contains('absent')) {
                 const allAbsents = document.querySelectorAll('.absent');
-                if (e.target === allAbsents[allAbsents.length - 1] && e.target.value) {
-                    const newSelect = document.createElement('select');
-                    newSelect.className = 'absent';
-                    document.getElementById('absents-list').appendChild(newSelect);
-                    populateAgentDropdown(newSelect);
+                if (e.target === allAbsents[allAbsents.length - 1]) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.className = 'absent';
+                    newInput.placeholder = "Nom de l'absent";
+                    document.getElementById('absents-list').appendChild(newInput);
                 }
             }
         });
-        
-        function populateAgentDropdown(dropdown) {
-            dropdown.innerHTML = '<option value="">Sélectionnez un agent absent</option>';
-            for (const agent of allAgents) {
-                if (!absents.has(agent)) { // Ne montrez que les agents qui ne sont pas déjà marqués comme absents
-                    const option = document.createElement('option');
-                    option.value = agent;
-                    option.textContent = agent;
-                    dropdown.appendChild(option);
-                }
-            }
-        }
         
     
         async function getAgentsDisponibles(jour, start, end) {
@@ -188,11 +178,10 @@
         
         async function generer() {
             absents.clear();
-        
             const jour = document.getElementById('jourSelect').value;
             document.querySelectorAll('.selection-container input').forEach(input => {
-                if (input.checked) {  // Modification ici pour vérifier si l'input est coché
-                    absents.add(input.dataset.name.trim());
+                if (input.value) {
+                    absents.add(input.value.trim());
                 }
             });
         
@@ -238,8 +227,6 @@
             showResult();
         }
         
-        
-        populateAgentDropdown(document.querySelector('.absent'));
 
         
 
