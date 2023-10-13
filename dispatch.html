@@ -90,7 +90,6 @@
             gap: 15px;
         }
         
-/* Styliser le <select> lorsqu'il n'est pas déroulé */
     #jourSelect {
         padding: 10px;
         font-size: 16px;
@@ -100,7 +99,7 @@
         outline: none;
         width: 250px;
         box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        appearance: none; /* Supprime l'apparence par défaut dans certains navigateurs */
+        appearance: none; 
         background-color: #f0f0f0;
     }
     
@@ -109,7 +108,6 @@
         box-shadow: 2px 2px 12px rgba(0, 120, 255, 0.4);
     }
     
-    /* Styliser les <option> */
     #jourSelect option {
         padding: 10px;
         background-color: #f5f5f5;
@@ -120,7 +118,6 @@
         border-bottom: none;
     }
     
-    /* Si vous voulez également styliser le bouton à côté */
     button {
         padding: 10px 15px;
         margin-left: 10px;
@@ -137,8 +134,8 @@
     }
     
     select[size], select[multiple] {
-        background-color: #f5f5f5;  /* couleur de fond */
-        border-radius: 10px; /* arrondi */
+        background-color: #f5f5f5;
+        border-radius: 10px;
     }
     
         
@@ -168,12 +165,11 @@
         <button onclick="generer()">Générer</button>
 
         <div class="absents-container">
-            <label>Absents:</label>
+            <label>Absents :</label>
             <div id="absents-list">
                 <input type="text" class="absent" placeholder="Nom de l'absent">
             </div>
         </div>
-        
     </div>
 
     <div id="resultat" class="resultat-container2"></div>
@@ -260,7 +256,7 @@
             }
         }
     
-        let absents = new Set(); // Stocker les agents absents
+        let absents = new Set();
         
         async function generer() {
             absents.clear();
@@ -281,10 +277,8 @@
         
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
         
-                    // Filtrer les agents déjà assignés et les agents absents
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
         
-                    // Mélanger les agents disponibles pour une affectation aléatoire
                     agentsDisponibles = shuffle(agentsDisponibles);
         
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
@@ -298,7 +292,7 @@
         
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                             output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
-                            assignedAgents.add(agentsDisponibles[i].name); // Marquer l'agent comme assigné
+                            assignedAgents.add(agentsDisponibles[i].name);
                         }
         
                         output += "</ul>";
@@ -306,17 +300,12 @@
                         output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
                     }
         
-                    output += `</div>`;  // Fin de la carte
+                    output += `</div>`;
                 }
             }
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
-        
-
-        
-
-
     </script>
     
 </body>
