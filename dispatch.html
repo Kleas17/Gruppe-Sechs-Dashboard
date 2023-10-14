@@ -284,27 +284,37 @@
         });
         
     
-        async function getAgentsDisponibles(jour, start, end) {
-            console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
-    
-            try {
-                const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
-                if (response.ok) {
-                    return await response.json();
-                } else {
-                    console.error("Erreur lors de la récupération des agents:", await response.text());
-                    return [];
-                }
-            } catch (error) {
-                console.error("Erreur lors de la récupération des agents:", error);
-                return [];
-            }
+        function timeToMinutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
         }
+        
+        async function getAgentsDisponibles(jour, start, end) {
+            // Assuming you fetch data from an API to get all available agents for the given day
+            const response = await fetch(`/api/availableAgents?jour=${jour}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch available agents');
+            }
+            
+            const allAgents = await response.json();
+            
+            const dispatchStartTime = timeToMinutes(start);
+            const dispatchEndTime = end === "00:00" ? 1440 : timeToMinutes(end);  // Convert "00:00" to 1440 minutes
+            
+            // Filter agents based on the time availability
+            const availableAgents = allAgents.filter(agent => {
+                const agentStartTime = timeToMinutes(agent.start);
+                const agentEndTime = agent.end === "00:00" ? 1440 : timeToMinutes(agent.end);  // Convert "00:00" to 1440 minutes
+        
+                return agentStartTime <= dispatchStartTime && agentEndTime >= dispatchEndTime;
+            });
+        
+            return availableAgents;
+        }
+        
     
         let absents = new Set();
         
-
-
         async function generer() {
             const jour = document.getElementById('jourSelect').value;
             const absentNames = [...document.querySelectorAll('.selection-container input')].map(input => input.value.trim());
@@ -313,10 +323,6 @@
             const assignedAgents = new Set();
             let output = "";
         
-            // ... your previous code ...
-
-// ... your previous code ...
-
             const availableAgentsForDispatches = (await Promise.all(dispatches.dispatches.map(async dispatch => {
                 if (!dispatch[jour] || !dispatch[jour].start || !dispatch[jour].end) return null;
 
