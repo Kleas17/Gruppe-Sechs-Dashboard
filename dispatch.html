@@ -302,6 +302,8 @@
         }
     
         let absents = new Set();
+        
+
 
         async function generer() {
             const jour = document.getElementById('jourSelect').value;
@@ -324,7 +326,7 @@
                 };
             }));
         
-            for (const dispatch of dispatches.dispatches) {
+            for (const {dispatch, agents} of availableAgentsForDispatches) {
                 if (!agents) continue;
         
                 const agentsToAssign = agents.filter(agent => !assignedAgents.has(agent.name)).slice(0, dispatch.nbAgents);
@@ -354,6 +356,7 @@
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
+        
         
     </script>
     
