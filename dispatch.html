@@ -313,19 +313,23 @@
             const assignedAgents = new Set();
             let output = "";
         
-            const availableAgentsForDispatches = await Promise.all(dispatches.dispatches.map(async dispatch => {
+            // ... your previous code ...
+
+// ... your previous code ...
+
+            const availableAgentsForDispatches = (await Promise.all(dispatches.dispatches.map(async dispatch => {
                 if (!dispatch[jour] || !dispatch[jour].start || !dispatch[jour].end) return null;
-        
+
                 const { start, end } = dispatch[jour];
                 let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
                 agentsDisponibles = agentsDisponibles.filter(agent => !absents.has(agent.name));
-        
+
                 return {
                     dispatch,
                     agents: shuffle(agentsDisponibles)
                 };
-            }));
-        
+            }))).filter(item => item !== null); // Added a filter to remove null values
+
             for (const {dispatch, agents} of availableAgentsForDispatches) {
                 if (!agents) continue;
         
