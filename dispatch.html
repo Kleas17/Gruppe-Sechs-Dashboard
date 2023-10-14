@@ -304,53 +304,57 @@
         let absents = new Set();
         
         async function generer() {
-            absents.clear();
             const jour = document.getElementById('jourSelect').value;
-            document.querySelectorAll('.selection-container input').forEach(input => {
-                if (input.value) {
-                    absents.add(input.value.trim());
-                }
-            });
+            const absentNames = [...document.querySelectorAll('.selection-container input')].map(input => input.value.trim());
+            const absents = new Set(absentNames);
         
+            const assignedAgents = new Set();
             let output = "";
-            let assignedAgents = new Set();
         
-            for (const dispatch of dispatches.dispatches) {
-                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
-                    const start = dispatch[jour].start;
-                    const end = dispatch[jour].end;
+            const availableAgentsForDispatches = await Promise.all(dispatches.dispatches.map(async dispatch => {
+                if (!dispatch[jour] || !dispatch[jour].start || !dispatch[jour].end) return null;
         
-                    let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+                const { start, end } = dispatch[jour];
+                let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+                agentsDisponibles = agentsDisponibles.filter(agent => !absents.has(agent.name));
         
-                    agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
+                return {
+                    dispatch,
+                    agents: shuffle(agentsDisponibles)
+                };
+            }));
         
-                    agentsDisponibles = shuffle(agentsDisponibles);
+            for (const { dispatch, agents } of availableAgentsForDispatches) {
+                if (!agents) continue;
         
-                    output += `<div class="card" style="background-color:${dispatch.color}">`;
-                    output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
-                    output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
-                    output += `<p><strong>Début :</strong> ${start}</p>`;
-                    output += `<p><strong>Fin :</strong> ${end}</p>`;
+                const agentsToAssign = agents.filter(agent => !assignedAgents.has(agent.name)).slice(0, dispatch.nbAgents);
         
-                    if (agentsDisponibles.length > 0) {
-                        output += "<strong>Agents Affecté :</strong><ul>";
+                output += `<div class="card" style="background-color:${dispatch.color}">`;
+                output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
+                output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
+                output += `<p><strong>Début :</strong> ${dispatch[jour].start}</p>`;
+                output += `<p><strong>Fin :</strong> ${dispatch[jour].end}</p>`;
         
-                        for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
-                            output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
-                            assignedAgents.add(agentsDisponibles[i].name);
-                        }
+                if (agentsToAssign.length > 0) {
+                    output += "<strong>Agents Affecté :</strong><ul>";
         
-                        output += "</ul>";
-                    } else {
-                        output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
+                    for (const agent of agentsToAssign) {
+                        output += `<li><span class="agent-info">${agent.name}</span></li>`;
+                        assignedAgents.add(agent.name);
                     }
         
-                    output += `</div>`;
+                    output += "</ul>";
+                } else {
+                    output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
                 }
+        
+                output += `</div>`;
             }
+        
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
+        
     </script>
     
 </body>
