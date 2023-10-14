@@ -152,7 +152,7 @@
 <body>
     <div id="particles-js"></div><script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
     <style>#particles-js{ position:absolute; width: 100%; height: 100%; background-size: cover; background-position: 50% 50%; z-index: -1;}</style>       
-    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.8,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true}); </script>
+    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.8,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
     
     <a href="gruppeSechs.html"><img src="logo.png" alt="Logo" class="logoTopAgent"></a>
 
@@ -182,24 +182,6 @@
     <script>
         const dispatches = {
             "dispatches": [
-                {
-                    "lieux": "Convoi Sud",
-                    "color": "#8A34BF",
-                    "nbAgents": 15,
-                    "Dimanche": { "start": "21:00", "end": "00:00" }
-                },
-                {
-                    "lieux": "Convoi Nord",
-                    "color": "#8A34BF",
-                    "nbAgents": 5,
-                    "Mercredi": { "start": "20:15", "end": "22:00" },
-                },
-                {
-                    "lieux": "Convoi Alderney",
-                    "color": "#878579",
-                    "nbAgents": 5,
-                    "Samedi": { "start": "21:00", "end": "22:00" },
-                },
                 {
                     "lieux": "LSMC",
                     "color": "#e57373",
@@ -253,7 +235,26 @@
                     "Mercredi": { "start": "21:00", "end": "00:00" },
                     "Vendredi": { "start": "21:00", "end": "00:00" },
                     "Samedi": { "start": "21:00", "end": "00:00" },
+                },
+                {
+                    "lieux": "Convoi Sud",
+                    "color": "#8A34BF",
+                    "nbAgents": 15,
+                    "Dimanche": { "start": "21:00", "end": "00:00" }
+                },
+                {
+                    "lieux": "Convoi Nord",
+                    "color": "#8A34BF",
+                    "nbAgents": 5,
+                    "Mercredi": { "start": "20:15", "end": "22:00" },
+                },
+                {
+                    "lieux": "Convoi Alderney",
+                    "color": "#878579",
+                    "nbAgents": 5,
+                    "Samedi": { "start": "21:00", "end": "22:00" },
                 }
+
 
             ]
         };
@@ -284,95 +285,73 @@
         });
         
     
-        function timeToMinutes(time) {
-            const [hours, minutes] = time.split(':').map(Number);
-            return hours * 60 + minutes;
-        }
-        
         async function getAgentsDisponibles(jour, start, end) {
-            // Assuming you fetch data from an API to get all available agents for the given day
-            const response = await fetch(`/api/availableAgents?jour=${jour}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch available agents');
+            console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
+    
+            try {
+                const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
+                if (response.ok) {
+                    return await response.json();
+                } else {
+                    console.error("Erreur lors de la récupération des agents:", await response.text());
+                    return [];
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération des agents:", error);
+                return [];
             }
-            
-            const allAgents = await response.json();
-            
-            const dispatchStartTime = timeToMinutes(start);
-            const dispatchEndTime = end === "00:00" ? 1440 : timeToMinutes(end);  // Convert "00:00" to 1440 minutes
-            
-            // Filter agents based on the time availability
-            const availableAgents = allAgents.filter(agent => {
-                const agentStartTime = timeToMinutes(agent.start);
-                const agentEndTime = agent.end === "00:00" ? 1440 : timeToMinutes(agent.end);  // Convert "00:00" to 1440 minutes
-        
-                return agentStartTime <= dispatchStartTime && agentEndTime >= dispatchEndTime;
-            });
-        
-            return availableAgents;
         }
-        
-        let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-        console.log('Agents Avant Filtre:', agentsDisponibles);
-        
-        agentsDisponibles = agentsDisponibles.filter(agent => !absents.has(agent.name));
-        console.log('Agents Après Filtre Absents:', agentsDisponibles);
-        
+    
         let absents = new Set();
         
         async function generer() {
+            absents.clear();
             const jour = document.getElementById('jourSelect').value;
-            const absentNames = [...document.querySelectorAll('.selection-container input')].map(input => input.value.trim());
-            const absents = new Set(absentNames);
+            document.querySelectorAll('.selection-container input').forEach(input => {
+                if (input.value) {
+                    absents.add(input.value.trim());
+                }
+            });
         
-            const assignedAgents = new Set();
             let output = "";
+            let assignedAgents = new Set();
         
-            const availableAgentsForDispatches = (await Promise.all(dispatches.dispatches.map(async dispatch => {
-                if (!dispatch[jour] || !dispatch[jour].start || !dispatch[jour].end) return null;
-
-                const { start, end } = dispatch[jour];
-                let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                agentsDisponibles = agentsDisponibles.filter(agent => !absents.has(agent.name));
-
-                return {
-                    dispatch,
-                    agents: shuffle(agentsDisponibles)
-                };
-            }))).filter(item => item !== null); // Added a filter to remove null values
-
-            for (const {dispatch, agents} of availableAgentsForDispatches) {
-                if (!agents) continue;
+            for (const dispatch of dispatches.dispatches) {
+                if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
+                    const start = dispatch[jour].start;
+                    const end = dispatch[jour].end;
         
-                const agentsToAssign = agents.filter(agent => !assignedAgents.has(agent.name)).slice(0, dispatch.nbAgents);
+                    let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
         
-                output += `<div class="card" style="background-color:${dispatch.color}">`;
-                output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
-                output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
-                output += `<p><strong>Début :</strong> ${dispatch[jour].start}</p>`;
-                output += `<p><strong>Fin :</strong> ${dispatch[jour].end}</p>`;
+                    agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
         
-                if (agentsToAssign.length > 0) {
-                    output += "<strong>Agents Affecté :</strong><ul>";
+                    agentsDisponibles = shuffle(agentsDisponibles);
         
-                    for (const agent of agentsToAssign) {
-                        output += `<li><span class="agent-info">${agent.name}</span></li>`;
-                        assignedAgents.add(agent.name);
+                    output += `<div class="card" style="background-color:${dispatch.color}">`;
+                    output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
+                    output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
+                    output += `<p><strong>Début :</strong> ${start}</p>`;
+                    output += `<p><strong>Fin :</strong> ${end}</p>`;
+        
+                    if (agentsDisponibles.length > 0) {
+                        output += "<strong>Agents Affecté :</strong><ul>";
+        
+                        for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
+                            output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
+                            assignedAgents.add(agentsDisponibles[i].name);
+                        }
+        
+                        output += "</ul>";
+                    } else {
+                        output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
                     }
         
-                    output += "</ul>";
-                } else {
-                    output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
+                    output += `</div>`;
                 }
-        
-                output += `</div>`;
             }
-        
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
-        
-        
     </script>
     
 </body>
