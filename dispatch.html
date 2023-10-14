@@ -312,7 +312,12 @@
             return availableAgents;
         }
         
-    
+        let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+        console.log('Agents Avant Filtre:', agentsDisponibles);
+        
+        agentsDisponibles = agentsDisponibles.filter(agent => !absents.has(agent.name));
+        console.log('Agents Après Filtre Absents:', agentsDisponibles);
+        
         let absents = new Set();
         
         async function generer() {
