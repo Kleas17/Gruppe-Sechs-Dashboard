@@ -334,7 +334,7 @@
                 output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
                 output += `<p><strong>Début :</strong> ${dispatch[jour].start}</p>`;
                 output += `<p><strong>Fin :</strong> ${dispatch[jour].end}</p>`;
-        
+
                 if (agentsToAssign.length > 0) {
                     output += "<strong>Agents Affecté :</strong><ul>";
         
@@ -342,7 +342,8 @@
                         output += `<li><span class="agent-info">${agent.name}</span></li>`;
                         assignedAgents.add(agent.name);
                     }
-        
+                    console.log("Agents disponibles pour", dispatch.lieux, ":", agents);
+
                     output += "</ul>";
                 } else {
                     output += "<p><strong>Aucun agent disponible pour ce créneau.</strong></p>";
