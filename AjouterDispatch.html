@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
+</head>
+
+<body class="welcome">
+    <div id="particles-js"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+    </style>
+    <script>particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 1000 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 5, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 0.8, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 215.7842157842158, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true }); var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function () { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
+    <div class="logo-wrapper">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+    <style>
+        @keyframes floatLogo {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+        }
+
+
+
+        table {
+            position: absolute;
+            top: 100px;
+            background-color: #367436;
+            /* Fond vert */
+            border-radius: 15px;
+            /* Bords arrondis */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            /* Box shadow */
+            border-spacing: 0;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3e3e3e;
+
+        }
+
+        input[type="time"] {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .logo {
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        #resultat {
+            position: relative;
+            top: 50px;
+            background-color: #3c3e3c;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            border-spacing: 0;
+            color: rgb(236, 71, 71);
+            margin-top: 200px;
+        }
+    </style>
+
+    <body>
+        <div class="logo-wrapper">
+            <a href="gruppeSechs.html"><img src="logo.png" alt="Logo" class="logo"></a>
+        </div>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Lundi</th>
+                <th>Mardi</th>
+                <th>Mercredi</th>
+                <th>Jeudi</th>
+                <th>Vendredi</th>
+                <th>Samedi</th>
+                <th>Dimanche</th>
+            </tr>
+            <tr>
+                <td style="background-color: #3c3e3c;">Début</td>
+                <!-- Champs de saisie des heures de début -->
+                <td><input type="time" name="debut_lundi"></td>
+                <td><input type="time" name="debut_mardi"></td>
+                <td><input type="time" name="debut_mercredi"></td>
+                <td><input type="time" name="debut_jeudi"></td>
+                <td><input type="time" name="debut_vendredi"></td>
+                <td><input type="time" name="debut_samedi"></td>
+                <td><input type="time" name="debut_dimanche"></td>
+            </tr>
+            <tr>
+                <td style="background-color: #3c3e3c;">Fin</td>
+                <!-- Champs de saisie des heures de fin -->
+                <td><input type="time" name="fin_lundi"></td>
+                <td><input type="time" name="fin_mardi"></td>
+                <td><input type="time" name="fin_mercredi"></td>
+                <td><input type="time" name="fin_jeudi"></td>
+                <td><input type="time" name="fin_vendredi"></td>
+                <td><input type="time" name="fin_samedi"></td>
+                <td><input type="time" name="fin_dimanche"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Nom dispatch</th>
+                <th>Nombre d'agent(s)</th>
+                <th>Couleur</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td style="background-color: #3c3e3c;">Infos</td>
+                <td></td>
+                <td></td>
+                <td><input type="text" id="nom" style="border-radius: 15px; height: 30px; text-align: center;"></td>
+                <td><input type="number" id="agentNB"
+                        style="border-radius: 15px; height: 30px; text-align: center; width: 50px;">
+                </td>
+                <td><input type="color" id="couleurDispatch" style="width: 100%;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <button onclick="genererInfos()" style="margin-top: 150px;">Générer</button>
+        <button id="copyButton" style="margin-top: 150px; background-color: #367436;">Copier</button>
+
+        <div id="resultat"> </div>
+
+        <script>
+            function genererInfos() {
+                var resultat = document.getElementById('resultat');
+                var lieux = document.getElementById('nom').value;
+                var nbAgents = document.getElementById('agentNB').value;
+                var couleur = document.getElementById('couleurDispatch').value;
+
+                // Begin with the <pre> tag to format text like code
+                var infos = `\`\`\`js`;
+                infos += `<pre>{\n`;
+                infos += `\t"lieux": "${lieux}",\n`;
+                infos += `\t"color": "${couleur}",\n`;
+                infos += `\t"nbAgents": ${nbAgents},\n`;
+
+                // Pour chaque jour de la semaine
+                var joursAvecHoraires = [];
+                ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'].forEach(function (jour) {
+                    var debut = document.querySelector('input[name="debut_' + jour + '"]').value;
+                    var fin = document.querySelector('input[name="fin_' + jour + '"]').value;
+                    // Ne pas ajouter la ligne si début et fin sont vides
+                    if (debut || fin) {
+                        joursAvecHoraires.push(`\t"${jour.charAt(0).toUpperCase() + jour.slice(1)}": { "start": "${debut}", "end": "${fin}" }`);
+                    }
+                });
+
+                // Ajouter les jours avec les horaires à la chaîne d'informations
+                infos += joursAvecHoraires.join(',\n');
+
+                infos += `\n}</pre>`;
+                infos += `\`\`\``;
+
+                // Set the innerHTML of the resultat element to the formatted infos string
+                resultat.innerHTML = infos;
+            }
+
+
+            function copyToClipboard() {
+                var tempTextArea = document.createElement("textarea");
+                tempTextArea.value = document.getElementById('resultat').innerText;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempTextArea);
+            }
+            document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+        </script>
+    </body>
+
+</html>

@@ -34,41 +34,25 @@
             }
         }
         
-        @keyframes slideFromTop {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideFromBottom {
-            0% {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
         .image-container:nth-child(1) {  /* Ajouter Agent */
             animation: slideFromLeft 1s forwards, fadeIn 1s forwards;
         }
         
         .image-container:nth-child(2) {  /* Documents */
-            animation: slideFromTop 1s forwards, fadeIn 1s forwards;
+            animation: slideFromLeft 1s forwards, fadeIn 1s forwards;
         }
         
         .image-container:nth-child(3) {  /* Liste agents */
-            animation: slideFromBottom 1s forwards, fadeIn 1s forwards;
+            animation: slideFromLeft 1s forwards, fadeIn 1s forwards;
         }
         
         .image-container:nth-child(4) {  /* Dispatch */
+            animation: slideFromRight 1s forwards, fadeIn 1s forwards;
+        }
+        .image-container:nth-child(5) {  /* Dispatch */
+            animation: slideFromRight 1s forwards, fadeIn 1s forwards;
+        }
+        .image-container:nth-child(6) {  /* Dispatch */
             animation: slideFromRight 1s forwards, fadeIn 1s forwards;
         }
         
@@ -139,6 +123,18 @@
                 <img src="dispatch.png" alt="Image 4" class="image" style="border-radius: 10px;">
             </a>
             <p class="image-text">Dispatch</p>
+        </div>
+        <div class="image-container">
+            <a href="contrats.html">
+                <img src="contrat.png" alt="Image 5" class="image" style="border-radius: 10px;">
+            </a>
+            <p class="image-text">Générer Contrats</p>
+        </div>
+        <div class="image-container">
+            <a href="AjouterDispatch.html">
+                <img src="dispatchAdd.png" alt="Image 6" class="image" style="border-radius: 10px;">
+            </a>
+            <p class="image-text">Ajouter Dispatch</p>
         </div>
     </div>
 
