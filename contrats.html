@@ -25,7 +25,7 @@
             border-radius: 15px;
         }
 
-        .devis-generator h2 {
+        .devis-generator h3 {
             border-bottom: 2px solid #4CAF50;
             color: #ffffff;
             padding-bottom: 5px;
@@ -75,7 +75,7 @@
             margin-top: 20px;
         }
 
-        .devis-output h2 {
+        .devis-output h3 {
             color: #333;
             border-left: 6px solid #4CAF50;
             padding-left: 10px;
@@ -118,6 +118,16 @@
             width: 200px;
             margin-left: 60%;
         }
+
+        #entete {
+            width: 100%;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #4CAF50;
+            margin: 20px 0;
+        }
     </style>
 </head>
 
@@ -148,11 +158,16 @@
                 <input type="date" id="devisDate" name="devisDate" required>
             </div>
             <div class="form-group">
-                <label for="serviceDetails">Détails des Services</label>
+                <label for="serviceDetails">Détails du service</label>
                 <textarea id="serviceDetails" name="serviceDetails" rows="4" required></textarea>
             </div>
             <div class="form-group">
                 <label for="serviceType">Type de Service</label>
+                <input type="text" id="duree" name="serviceDuree" required>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceType">Durée du contrat</label>
                 <input type="text" id="serviceType" name="serviceType" required>
             </div>
 
@@ -212,6 +227,7 @@
             var devisDateValue = document.getElementById('devisDate').value;
             var serviceDetails = document.getElementById('serviceDetails').value;
             var serviceType = document.getElementById('serviceType').value;
+            var dureeType = document.getElementById('duree').value;
 
             var numAgents = parseInt(document.getElementById('numAgents').value, 10);
             var hoursPerAgent = parseFloat(document.getElementById('hoursPerAgent').value);
@@ -230,20 +246,23 @@
 
 
             var clientAndServiceInfo = `
+                <img src="entete.png" id="entete">
+
                 <div class="client-service-info">
-                    <h2>Devis</h2>
+                    <h3>Date : ${devisDate}</h3>
                 </div>
                 <p><strong>Client :</strong> ${clientName}</p>
                 <br>
             `;
 
-            var dateInfo = `<div class="date-info" style="text-align: right;"><strong>Date :</strong> ${devisDate}</div>`;
-
-
             var contractInfo = `
 
-
-            <p><strong>Type de Service :</strong> ${serviceType}</p>
+            <table style = "width: 100%;">
+                <tr>
+                    <td><strong>Type de service :</strong> ${serviceType}</td>
+                    <td><strong>Durée du contrat :</strong> ${dureeType}</td>
+                </tr>
+            </table>
 
             <table class="devis-table" style="border-collapse: collapse; width: 100%; margin-top: 20px; background-color: #f2f2f2;">
                 <tr class="table-header" style="background-color: #4CAF50; color: white;">
@@ -263,28 +282,18 @@
                     <td style="padding: 10px; font-weight: bold;">${totalPrice.toFixed(2)}€</td>
                 </tr>
             </table>
-            <br>
-            <br>
-            <p><strong>Détails des Services :</strong></p>
+            <p><strong>Détails du service :</strong></p>
                     <p>${serviceDetails}</p>
-
-
             `;
 
             var footerDevis = `
-                <br>
-                <br>
-                <br>
-                <br>
+                <hr>
                 <p>Le Gruppe Sechs vous remercie pour votre confiance.</p>
-                <br>
-                <br>
-
                 <p style= "margin-left: 60%;">SIGNATURE :</p>
                 <img src="signature.png" id="imgSign">
             `;
 
-            document.getElementById('devisOutput').innerHTML = dateInfo + clientAndServiceInfo + contractInfo + footerDevis;
+            document.getElementById('devisOutput').innerHTML = clientAndServiceInfo + contractInfo + footerDevis;
         }
     </script>
 </body>
