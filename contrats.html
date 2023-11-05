@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Devis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .devis-generator {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: green;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #devisOutput {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            background: #eee;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="devis-generator">
+        <form id="devisForm">
+            <h2>Créer un Devis</h2>
+            <div class="form-group">
+                <label for="clientName">Nom du Client :</label>
+                <input type="text" id="clientName" name="clientName" required>
+            </div>
+            <div class="form-group">
+                <label for="serviceDetails">Détails des Services :</label>
+                <textarea id="serviceDetails" name="serviceDetails" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="totalPrice">Prix Total (USD) :</label>
+                <input type="number" id="totalPrice" name="totalPrice" required>
+            </div>
+            <button type="button" onclick="generateDevis()">Générer le Devis</button>
+        </form>
+        <div id="devisOutput"></div>
+    </div>
+    <script>
+        function generateDevis() {
+            var clientName = document.getElementById('clientName').value;
+            var serviceDetails = document.getElementById('serviceDetails').value;
+            var totalPrice = document.getElementById('totalPrice').value;
+
+            var devisOutput = `
+    <h2>Devis</h2>
+    <p><strong>Client :</strong> ${clientName}</p>
+    <p><strong>Services :</strong> ${serviceDetails.replace(/\n/g, '<br>')}</p>
+    <p><strong>Total à Payer :</strong> $${totalPrice}</p>
+    <p>Le Gruppe 6 vous remercie pour votre confiance.</p>
+  `;
+
+            document.getElementById('devisOutput').innerHTML = devisOutput;
+        }
+    </script>
+</body>
+
+</html>
