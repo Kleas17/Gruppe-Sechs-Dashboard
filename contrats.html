@@ -8,93 +8,274 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #f4f4f4;
+            background: #fff;
             margin: 0;
             padding: 20px;
         }
 
         .devis-generator {
-            background: white;
+            background: #fff;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
+            border: 1px solid #e4e4e4;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        .devis-generator h2 {
+            border-bottom: 2px solid #4CAF50;
+            color: #333;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
         .form-group {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
-            display: block;
+            font-weight: bold;
             margin-bottom: 5px;
+            display: block;
+            color: #333;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
         }
 
         button {
-            padding: 10px 20px;
-            border: none;
-            background: green;
+            width: 100%;
+            background-color: #4CAF50;
             color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: 5px;
+            font-size: 16px;
         }
 
         button:hover {
-            opacity: 0.8;
+            background-color: #45a049;
         }
 
-        #devisOutput {
+        .devis-output {
+            background: #f9f9f9;
+            padding: 20px;
             margin-top: 20px;
-            border: 1px solid #ddd;
-            background: #eee;
+        }
+
+        .devis-output h2 {
+            color: #333;
+            border-left: 6px solid #4CAF50;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .devis-detail {
+            background: #fff;
+            border: 1px solid #ccc;
             padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .devis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .devis-table,
+        .devis-table th,
+        .devis-table td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .devis-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .devis-table td input {
+            width: 90%;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        #imgSign {
+            width: 150px;
+            height: 150px;
+            margin-left: 70%;
+        }
+
+        .table-info {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-info tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .table-info td {
+            padding: 10px;
+            color: #333;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .table-info tr:last-child td {
+            border-top: 2px solid #e1e1e1;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
     <div class="devis-generator">
+        <h2>Générateur de Devis</h2>
         <form id="devisForm">
-            <h2>Créer un Devis</h2>
             <div class="form-group">
-                <label for="clientName">Nom du Client :</label>
+                <label for="clientName">Nom du Client</label>
                 <input type="text" id="clientName" name="clientName" required>
             </div>
             <div class="form-group">
-                <label for="serviceDetails">Détails des Services :</label>
+                <label for="devisDate">Date du Devis</label>
+                <input type="date" id="devisDate" name="devisDate" required>
+            </div>
+            <div class="form-group">
+                <label for="serviceDetails">Détails des Services</label>
                 <textarea id="serviceDetails" name="serviceDetails" rows="4" required></textarea>
             </div>
             <div class="form-group">
-                <label for="totalPrice">Prix Total (USD) :</label>
-                <input type="number" id="totalPrice" name="totalPrice" required>
+                <label for="serviceType">Type de Service</label>
+                <input type="text" id="serviceType" name="serviceType" required>
+            </div>
+
+            <div class="form-group">
+                <label>Jours de la semaine pour le contrat</label>
+                <div>
+                    <input type="checkbox" id="dayMonday" name="contractDays" value="Lundi">
+                    <label for="dayMonday">Lundi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="dayTuesday" name="contractDays" value="Mardi">
+                    <label for="dayTuesday">Mardi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="dayWednesday" name="contractDays" value="Mercredi">
+                    <label for="dayWednesday">Mercredi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="dayThursday" name="contractDays" value="Jeudi">
+                    <label for="dayThursday">Jeudi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="dayFriday" name="contractDays" value="Vendredi">
+                    <label for="dayFriday">Vendredi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="daySaturday" name="contractDays" value="Samedi">
+                    <label for="daySaturday">Samedi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="daySunday" name="contractDays" value="Dimanche">
+                    <label for="daySunday">Dimanche</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="hoursPerAgent">Heures par agent</label>
+                <input type="text" id="hoursPerAgent" name="hoursPerAgent" required>
+            </div>
+
+            <div class="form-group">
+                <label for="numAgents">Nombre d'agents</label>
+                <input type="number" id="numAgents" name="numAgents" required>
+            </div>
+            <div class="form-group">
+                <label for="pricePerHour">Prix de l'heure (€)</label>
+                <input type="number" id="pricePerHour" name="pricePerHour" required>
             </div>
             <button type="button" onclick="generateDevis()">Générer le Devis</button>
         </form>
-        <div id="devisOutput"></div>
+        <div id="devisOutput" class="devis-output"></div>
     </div>
     <script>
         function generateDevis() {
             var clientName = document.getElementById('clientName').value;
+            var devisDateValue = document.getElementById('devisDate').value;
             var serviceDetails = document.getElementById('serviceDetails').value;
-            var totalPrice = document.getElementById('totalPrice').value;
+            var serviceType = document.getElementById('serviceType').value;
 
-            var devisOutput = `
-    <h2>Devis</h2>
-    <p><strong>Client :</strong> ${clientName}</p>
-    <p><strong>Services :</strong> ${serviceDetails.replace(/\n/g, '<br>')}</p>
-    <p><strong>Total à Payer :</strong> $${totalPrice}</p>
-    <p>Le Gruppe 6 vous remercie pour votre confiance.</p>
-  `;
+            var numAgents = parseInt(document.getElementById('numAgents').value, 10);
+            var hoursPerAgent = parseFloat(document.getElementById('hoursPerAgent').value);
+            var pricePerHour = parseFloat(document.getElementById('pricePerHour').value);
 
-            document.getElementById('devisOutput').innerHTML = devisOutput;
+            var checkboxes = document.querySelectorAll('input[name="contractDays"]:checked');
+            var numberOfDays = checkboxes.length;
+            var selectedDays = Array.from(checkboxes).map(checkbox => checkbox.value);
+            var daysString = selectedDays.join(', ');
+
+            var totalPrice = numAgents * hoursPerAgent * numberOfDays * pricePerHour;
+
+            var devisDateObject = new Date(devisDateValue);
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            var devisDate = devisDateObject.toLocaleDateString('fr-FR', options);
+
+
+            var clientAndServiceInfo = `
+                <div class="client-service-info">
+                    <h2>Devis pour ${clientName}</h2>
+                    <p><strong>Détails des Services :</strong></p>
+                    <p>${serviceDetails}</p>
+                </div>
+            `;
+
+            var dateInfo = `<div class="date-info" style="text-align: right;"><strong>Date :</strong> ${devisDate}</div>`;
+
+
+            var contractInfo = `
+            <table class="devis-table" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+                <tr class="table-header" style="background-color: #4CAF50; color: white;">
+                    <th style="padding: 10px; text-align: left;">BIENS / SERVICES</th>
+                    <th style="padding: 10px; text-align: left;">PRIX</th>
+                </tr>
+                <tr class="table-info">
+                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">Nombre d'agent(s) : ${numAgents}</td>
+                    <td style="padding: 10px; border-bottom: 2px solid #ddd;"></td>
+                </tr>
+                <tr class="table-info">
+                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">Durée du contrat : ${daysString}</td>
+                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">${hoursPerAgent} heures par agent</td>
+                </tr>
+                <tr class="table-info">
+                    <td style="padding: 10px; font-weight: bold;">TOTAL/SEMAINE :</td>
+                    <td style="padding: 10px; font-weight: bold;">${totalPrice.toFixed(2)}€</td>
+                </tr>
+            </table>
+
+            `;
+
+            var footerDevis = `
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>Le Gruppe Sechs vous remercie pour votre confiance. - SIGNATURE : </p>
+                <img src="contrat.png" id="imgSign">
+            `;
+
+            document.getElementById('devisOutput').innerHTML = dateInfo + clientAndServiceInfo + contractInfo + footerDevis;
         }
     </script>
 </body>
