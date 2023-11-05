@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <title>Documents essentiels</title>
 </head>
+
 <body class="documents-page">
-    <div id="particles-js"></div><script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
-    <style>#particles-js{ position:absolute; width: 100%; height: 100%; background-size: cover; background-position: 50% 50%; z-index: -1;}</style>       
-    <script>particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1000}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":5,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.8,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":215.7842157842158,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
+    <div id="particles-js"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+    </style>
+    <script>particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 1000 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 5, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 0.8, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 215.7842157842158, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true }); var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function () { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
 
     <style>
         .logoTop {
@@ -17,7 +31,6 @@
             margin: 0 auto;
             margin-left: -230px;
         }
-
     </style>
 
     <a href="gruppeSechs.html"><img src="logo.png" alt="Logo de GruppeSechs" class="logoTop"></a>
@@ -25,7 +38,7 @@
     <section class="documents-section">
         <h2 style="font-size: 60px;">Documents essentiels</h2>
         <div class="document-gallery" style="font-size: 1.1vm;">
-             
+
             <div class="document-item" data-doc="ppaSlide.pdf">Formation PPA - Format Slide
                 <img src="ppa1.png" alt="Document 3" style="border-radius: 5%;">
             </div>
@@ -33,7 +46,8 @@
                 <img src="ppa2.png" alt="Document 3" style="border-radius: 5%;">
             </div>
             <div class="document-itemClick">Formation PPA - Questionnaire
-                <a href="https://docs.google.com/forms/d/1wW8pH_yghgBdrW82ZPR0R3eVYtaisjtiXfXjqfv4rIk/edit" target="_blank"><img src="ppa3.png" alt="Document 3" style="border-radius: 5%;"></a> 
+                <a href="https://docs.google.com/forms/d/1wW8pH_yghgBdrW82ZPR0R3eVYtaisjtiXfXjqfv4rIk/edit"
+                    target="_blank"><img src="ppa3.png" alt="Document 3" style="border-radius: 5%;"></a>
             </div>
 
 
@@ -58,10 +72,10 @@
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const documentItems = document.querySelectorAll('.document-item');
             documentItems.forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     openViewer(item.getAttribute('data-doc'));
                 });
             });
@@ -83,4 +97,5 @@
 
     <script src="verificationConnexion.js"></script>
 </body>
+
 </html>
