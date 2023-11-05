@@ -116,26 +116,6 @@
             width: 200px;
             margin-left: 60%;
         }
-
-        .table-info {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table-info tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
-
-        .table-info td {
-            padding: 10px;
-            color: #333;
-            border-bottom: 1px solid #e1e1e1;
-        }
-
-        .table-info tr:last-child td {
-            border-top: 2px solid #e1e1e1;
-            font-weight: bold;
-        }
     </style>
 </head>
 
@@ -263,7 +243,7 @@
             <br>
             <br>
 
-            <table class="devis-table" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+            <table class="devis-table" style="border-collapse: collapse; width: 100%; margin-top: 20px; background-color: #f2f2f2;">
                 <tr class="table-header" style="background-color: #4CAF50; color: white;">
                     <th style="padding: 10px; text-align: left;">BIENS / SERVICES</th>
                     <th style="padding: 10px; text-align: left;">PRIX</th>
@@ -281,6 +261,7 @@
                     <td style="padding: 10px; font-weight: bold;">${totalPrice.toFixed(2)}€</td>
                 </tr>
             </table>
+
 
             `;
 
