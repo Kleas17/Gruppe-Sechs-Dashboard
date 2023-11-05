@@ -8,23 +8,24 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #fff;
+            background: #121212;
             margin: 0;
             padding: 20px;
         }
 
         .devis-generator {
-            background: #fff;
+            background: #22543A;
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
             border: 1px solid #e4e4e4;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
         }
 
         .devis-generator h2 {
             border-bottom: 2px solid #4CAF50;
-            color: #333;
+            color: #ffffff;
             padding-bottom: 5px;
             margin-bottom: 20px;
         }
@@ -37,7 +38,7 @@
             font-weight: bold;
             margin-bottom: 5px;
             display: block;
-            color: #333;
+            color: #d6d6d6;
         }
 
         .form-group input,
@@ -67,7 +68,7 @@
         }
 
         .devis-output {
-            background: #f9f9f9;
+            background: #ffffff;
             padding: 20px;
             margin-top: 20px;
         }
@@ -112,9 +113,8 @@
         }
 
         #imgSign {
-            width: 150px;
-            height: 150px;
-            margin-left: 70%;
+            width: 200px;
+            margin-left: 60%;
         }
 
         .table-info {
@@ -140,6 +140,20 @@
 </head>
 
 <body>
+    <div id="particles-js"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -1;
+        }
+    </style>
+    <script>particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 1000 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 5, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 0.8, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 215.7842157842158, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true }); var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function () { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;</script>
+
     <div class="devis-generator">
         <h2>Générateur de Devis</h2>
         <form id="devisForm">
@@ -245,6 +259,10 @@
 
 
             var contractInfo = `
+            <br>
+            <br>
+            <br>
+
             <table class="devis-table" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
                 <tr class="table-header" style="background-color: #4CAF50; color: white;">
                     <th style="padding: 10px; text-align: left;">BIENS / SERVICES</th>
@@ -271,8 +289,12 @@
                 <br>
                 <br>
                 <br>
-                <p>Le Gruppe Sechs vous remercie pour votre confiance. - SIGNATURE : </p>
-                <img src="contrat.png" id="imgSign">
+                <p>Le Gruppe Sechs vous remercie pour votre confiance.</p>
+                <br>
+                <br>
+
+                <p style= "margin-left: 60%;">SIGNATURE :</p>
+                <img src="signature.png" id="imgSign">
             `;
 
             document.getElementById('devisOutput').innerHTML = dateInfo + clientAndServiceInfo + contractInfo + footerDevis;
