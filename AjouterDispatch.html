@@ -168,7 +168,6 @@
                 var nbAgents = document.getElementById('agentNB').value;
                 var couleur = document.getElementById('couleurDispatch').value;
 
-                // Begin with the <pre> tag to format text like code
                 var infos = `\`\`\`js`;
                 infos += `<pre>{\n`;
                 infos += `\t"lieux": "${lieux}",\n`;
@@ -192,7 +191,6 @@
                 infos += `\n}</pre>`;
                 infos += `\`\`\``;
 
-                // Set the innerHTML of the resultat element to the formatted infos string
                 resultat.innerHTML = infos;
             }
 
