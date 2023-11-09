@@ -127,7 +127,7 @@ body {
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(4, 2fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     justify-content: center;
 }
@@ -160,6 +160,9 @@ body {
     height: 200px;
     position: relative;
     margin: 30px;
+    background-color: #22543A;
+    border-radius: 10px;
+    border: 1px solid #ccc;
 }
 
 .image {
