@@ -168,60 +168,13 @@
                 <label for="serviceDetails">Détails du service</label>
                 <textarea id="serviceDetails" name="serviceDetails" rows="4" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="serviceType">Type de Service</label>
-                <input type="text" id="duree" name="serviceDuree" required>
-            </div>
 
             <div class="form-group">
-                <label for="serviceType">Durée du contrat</label>
-                <input type="text" id="serviceType" name="serviceType" required>
-            </div>
-
-            <div class="form-group">
-                <label>Jours de la semaine pour le contrat</label>
-                <div>
-                    <input type="checkbox" id="dayMonday" name="contractDays" value="Lundi">
-                    <label for="dayMonday">Lundi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="dayTuesday" name="contractDays" value="Mardi">
-                    <label for="dayTuesday">Mardi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="dayWednesday" name="contractDays" value="Mercredi">
-                    <label for="dayWednesday">Mercredi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="dayThursday" name="contractDays" value="Jeudi">
-                    <label for="dayThursday">Jeudi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="dayFriday" name="contractDays" value="Vendredi">
-                    <label for="dayFriday">Vendredi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="daySaturday" name="contractDays" value="Samedi">
-                    <label for="daySaturday">Samedi</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="daySunday" name="contractDays" value="Dimanche">
-                    <label for="daySunday">Dimanche</label>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label for="hoursPerAgent">Heures par agent</label>
-                <input type="text" id="hoursPerAgent" name="hoursPerAgent" required>
-            </div>
-
-            <div class="form-group">
-                <label for="numAgents">Nombre d'agents</label>
-                <input type="number" id="numAgents" name="numAgents" required>
+                <label for="dureeType">Durée du contrat</label>
+                <input type="text" id="dureeType" name="dureeType" required>
             </div>
             <div class="form-group">
-                <label for="pricePerHour">Prix de l'heure (€)</label>
+                <label for="pricePerHour">Prix</label>
                 <input type="number" id="pricePerHour" name="pricePerHour" required>
             </div>
             <button type="button" onclick="generateDevis()">Générer le Devis</button>
@@ -233,23 +186,14 @@
             var clientName = document.getElementById('clientName').value;
             var devisDateValue = document.getElementById('devisDate').value;
             var serviceDetails = document.getElementById('serviceDetails').value;
-            var serviceType = document.getElementById('serviceType').value;
-            var dureeType = document.getElementById('duree').value;
-
-            var numAgents = parseInt(document.getElementById('numAgents').value, 10);
-            var hoursPerAgent = parseFloat(document.getElementById('hoursPerAgent').value);
-            var pricePerHour = parseFloat(document.getElementById('pricePerHour').value);
-
-            var checkboxes = document.querySelectorAll('input[name="contractDays"]:checked');
-            var numberOfDays = checkboxes.length;
-            var selectedDays = Array.from(checkboxes).map(checkbox => checkbox.value);
-            var daysString = selectedDays.join(', ');
-
-            var totalPrice = numAgents * hoursPerAgent * numberOfDays * pricePerHour;
+            var price = document.getElementById('pricePerHour').value;
 
             var devisDateObject = new Date(devisDateValue);
             var options = { year: 'numeric', month: 'long', day: 'numeric' };
             var devisDate = devisDateObject.toLocaleDateString('fr-FR', options);
+
+            var serviceType = document.getElementById('serviceDetails').value;
+            var dureeType = document.getElementById('dureeType').value;
 
 
             var clientAndServiceInfo = `
@@ -266,8 +210,8 @@
 
             <table style = "width: 100%;">
                 <tr>
-                    <td><strong>Type de service :</strong> ${dureeType}</td>
-                    <td><strong>Durée du contrat :</strong> ${serviceType}</td>
+                    <td><strong>Type de service :</strong> Contrat d'intervention</td>
+                    <td><strong>Durée du contrat :</strong> ${dureeType}</td>
                 </tr>
             </table>
 
@@ -277,20 +221,15 @@
                     <th style="padding: 10px; text-align: left; border-top-right-radius: 15px; border-left: 2px solid #ddd;">PRIX</th>
                 </tr>
                 <tr class="table-info">
-                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">Nombre d'agent(s) : ${numAgents}</td>
-                    <td style="padding: 10px; border-bottom: 2px solid #ddd; border-left: 2px solid #ddd;"></td>
-                </tr>
-                <tr class="table-info">
-                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">Jours actif : ${daysString}</td>
-                    <td style="padding: 10px; border-bottom: 2px solid #ddd; border-left: 2px solid #ddd;">${hoursPerAgent} heures par agent</td>
+                    <td style="padding: 10px; border-bottom: 2px solid #ddd;">Jours actif : Tous les jours</td>
                 </tr>
                 <tr class="table-info">
                     <td style="padding: 10px; font-weight: bold;">TOTAL/SEMAINE :</td>
-                    <td style="padding: 10px; font-weight: bold; border-left: 2px solid #ddd;">${totalPrice.toFixed(2)}€</td>
+                    <td style="padding: 10px; font-weight: bold; border-left: 2px solid #ddd;">${price} $</td>
                 </tr>
             </table>
             <p><strong>Détails du service :</strong></p>
-                    <p>${serviceDetails}</p>
+                    <p>L'entreprise cliente à besoin d'un contrat d'intervention du G6 en cas d'appel de leur part, afin de sécurisé le site ${clientName}, ses employés et ses clients. En retour l'entreprise cliente doit verser ${price} $ chaque Dimanche au G6. ${serviceDetails}</p>
             `;
 
             var footerDevis = `

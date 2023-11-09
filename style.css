@@ -4,23 +4,40 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
-    font-size: 62.5%; /* Réinitialisation de la taille de la police pour faciliter le rem */
+    font-size: 62.5%;
+    /* Réinitialisation de la taille de la police pour faciliter le rem */
 }
+
 body {
-    font-size: 1.6rem; /* 16px */
+    font-size: 1.6rem;
+    /* 16px */
     line-height: 1.5;
 }
-h1, h2, h3, h4, h5, h6, p, ul, ol {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
     margin: 0;
     padding: 0;
 }
+
 a {
     text-decoration: none;
 }
-ul, ol {
+
+ul,
+ol {
     list-style: none;
 }
+
 img {
     max-width: 100%;
     height: auto;
@@ -37,7 +54,8 @@ img {
 
 
 body {
-    background-color: #121212; /* noir mat */
+    background-color: #121212;
+    /* noir mat */
     color: white;
     font-family: Arial, sans-serif;
 }
@@ -48,6 +66,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 .login-form input[type="text"],
 .login-form input[type="password"] {
     margin-bottom: 10px;
@@ -56,6 +75,7 @@ body {
     border: none;
     border-radius: 5px;
 }
+
 .login-form button {
     padding: 10px 20px;
     background-color: white;
@@ -66,9 +86,10 @@ body {
 }
 
 .container {
-    max-height: 100vh; /* Cela garantit que le conteneur ne dépasse jamais la hauteur de la fenêtre du navigateur. */
+    max-height: 100vh;
+    /* Cela garantit que le conteneur ne dépasse jamais la hauteur de la fenêtre du navigateur. */
     overflow: hidden;
-    position: relative; 
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,17 +98,19 @@ body {
 
 .logo {
     position: absolute;
-    top: 20%; 
-    left: 50%; 
-    transform: translateX(-50%); 
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     max-width: 400px;
 }
 
 
 /* Seconde page */
 .welcome {
-    background-color: #121212; /* noir mat */
-    color: white; /* écriture blanche */
+    background-color: #121212;
+    /* noir mat */
+    color: white;
+    /* écriture blanche */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,14 +120,14 @@ body {
 
 .logoTop {
     position: absolute;
-    margin : auto;
+    margin: auto;
     top: 0;
     width: 25%;
 }
 
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    grid-template-columns: repeat(4, 2fr);
     gap: 20px;
     justify-content: center;
 }
@@ -120,10 +143,12 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+
     50% {
         transform: scale(1.05);
         opacity: 0.7;
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
@@ -175,7 +200,8 @@ body {
 
 #agentList {
     margin-top: 20px;
-    border-radius: 10px; /* Bords arrondis pour la liste entière */
+    border-radius: 10px;
+    /* Bords arrondis pour la liste entière */
 }
 
 .agent-item {
@@ -183,23 +209,23 @@ body {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #eee;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .agent-item button {
-    background-color: #ff4b5c; 
+    background-color: #ff4b5c;
     color: white;
-    border: none; 
-    padding: 5px 10px; 
-    cursor: pointer; 
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
     margin-left: 20px;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 
 .logoTopAgent {
     position: absolute;
-    margin : auto;
+    margin: auto;
     top: 0;
     width: 25%;
 }
@@ -213,6 +239,7 @@ body {
     margin-top: 300px;
     margin-bottom: 200px;
 }
+
 .agent-form input[type="text"],
 .agent-form input[type="time"] {
     margin-bottom: 5px;
@@ -222,6 +249,7 @@ body {
     border-radius: 3px;
     background-color: #6a6868;
 }
+
 .agent-form button {
     padding: 5px 10px;
     background-color: white;
@@ -240,20 +268,22 @@ body {
     margin-bottom: 5px;
 }
 
-.day label, .day input {
+.day label,
+.day input {
     display: inline-block;
 }
 
 .agent-form p {
     margin-top: 10px;
 }
+
 .agent-form label {
     padding-left: 15px;
 }
 
 .documents-page {
-    background-color: #121212; 
-    color: white; 
+    background-color: #121212;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -261,7 +291,7 @@ body {
 }
 
 .documents-section {
-    background-color: #22543A; 
+    background-color: #22543A;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -326,7 +356,7 @@ body {
 
 .document-viewer {
     position: fixed;
-    top: 0; 
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -346,20 +376,20 @@ body {
     position: absolute;
     right: 20px;
     top: 20px;
-    width: 40px;      
+    width: 40px;
     height: 40px;
-    background-color: #ff4b5c; 
-    color: white;     
+    background-color: #ff4b5c;
+    color: white;
     font-size: 30px;
     cursor: pointer;
-    border-radius: 50%; 
+    border-radius: 50%;
     text-align: center;
-    line-height: 40px;  
+    line-height: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .close-btn:hover {
-    background-color: #e4394c; 
+    background-color: #e4394c;
 }
 
 .document-viewer {
@@ -418,14 +448,18 @@ body {
 #agentsDisplay {
     margin: 20px 0;
 }
+
 /* Conteneur des agents */
 #agentsDisplay {
-    max-height: calc(100vh - 150px); /* J'ai mis 150px comme exemple pour tenir compte de l'en-tête, du logo et d'autres marges. Vous devriez ajuster cette valeur en fonction de vos besoins. */
-    overflow-y: auto; 
+    max-height: calc(100vh - 150px);
+    /* J'ai mis 150px comme exemple pour tenir compte de l'en-tête, du logo et d'autres marges. Vous devriez ajuster cette valeur en fonction de vos besoins. */
+    overflow-y: auto;
     margin: 20px 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille égale */
-    gap: 20px; /* Espace entre les éléments de grille */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 colonnes de taille égale */
+    gap: 20px;
+    /* Espace entre les éléments de grille */
     margin-top: 180px;
 }
 
@@ -436,7 +470,8 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
     transition: background-color 0.3s ease;
-    text-align: center; /* Centre le contenu de chaque agent */
+    text-align: center;
+    /* Centre le contenu de chaque agent */
 }
 
 .agent:hover {
@@ -446,7 +481,8 @@ body {
 .agent h3 {
     margin-top: 0;
     color: #333;
-    font-size: 1.2em; /* Taille de police légèrement augmentée pour le nom */
+    font-size: 1.2em;
+    /* Taille de police légèrement augmentée pour le nom */
 }
 
 .agent p {
@@ -457,7 +493,7 @@ body {
 
 h2 {
     position: absolute;
-    text-align: center; 
+    text-align: center;
     margin: 20px 0;
     padding-bottom: 10px;
     border-bottom: 2px solid #ccc;
