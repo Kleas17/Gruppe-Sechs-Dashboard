@@ -440,10 +440,7 @@
                     agentsDisponibles = shuffle(agentsDisponibles);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
-                    output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
-                    output += `<p><strong>Nombre d'agents:</strong> ${dispatch.nbAgents}</p>`;
-                    output += `<p><strong>Début :</strong> ${start}</p>`;
-                    output += `<p><strong>Fin :</strong> ${end}</p>`;
+                    output += `<h3>Dispo : ${dispatch.lieux}</h3>`;
 
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents Affecté :</strong><ul>";
