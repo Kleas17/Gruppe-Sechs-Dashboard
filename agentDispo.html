@@ -368,6 +368,7 @@
                     "nbAgents": 2,
                     "Dimanche": { "start": "01:00", "end": "03:00" }
                 },
+
             ]
         };
 
@@ -426,6 +427,7 @@
             });
 
             let output = "";
+            let assignedAgents = new Set();
 
             for (const dispatch of dispatches.dispatches) {
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
@@ -433,6 +435,7 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+
 
                     agentsDisponibles = shuffle(agentsDisponibles);
 
