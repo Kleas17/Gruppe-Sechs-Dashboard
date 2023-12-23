@@ -321,7 +321,7 @@
 
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
 
-                    agentsDisponibles = shuffle(agentsDisponibles);
+                    //agentsDisponibles = shuffle(agentsDisponibles);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
                     output += `<h3>Lieux: ${dispatch.lieux}</h3>`;
