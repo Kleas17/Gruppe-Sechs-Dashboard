@@ -415,16 +415,8 @@
             }
         }
 
-        let absents = new Set();
-
         async function generer() {
-            absents.clear();
             const jour = document.getElementById('jourSelect').value;
-            document.querySelectorAll('.selection-container input').forEach(input => {
-                if (input.value) {
-                    absents.add(input.value.trim());
-                }
-            });
 
             let output = "";
             let assignedAgents = new Set();
@@ -435,9 +427,6 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-
-
-                    agentsDisponibles = shuffle(agentsDisponibles);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
                     output += `<h3>Dispo : ${dispatch.lieux}</h3>`;
