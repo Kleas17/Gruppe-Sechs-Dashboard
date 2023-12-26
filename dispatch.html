@@ -282,6 +282,7 @@
 
 
         async function getAgentsDisponibles(jour, start, end) {
+            console.log('getAgent')
             console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
 
             try {
@@ -318,7 +319,7 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-
+                    console.log(agentsDisponibles)
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
 
                     //agentsDisponibles = shuffle(agentsDisponibles);
