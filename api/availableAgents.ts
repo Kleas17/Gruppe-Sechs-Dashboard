@@ -13,11 +13,8 @@ export default async function handler(
     const db = client.db('Gruppe');
     const collection = db.collection('agents');
 
-    const jour = request.query.jour;
-    const start = request.query.start;
-    const end = request.query.end;
-
-    const agents = await collection.find([jour]).toArray();
+    // Récupérer tous les agents sans tenir compte de leur disponibilité
+    const agents = await collection.find().toArray();
 
     return response.json(agents);
 

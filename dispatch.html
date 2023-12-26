@@ -281,9 +281,9 @@
         });
 
 
-        async function getAgentsDisponibles(jour, start, end) {
+        async function getAgentsDisponibles() {
             try {
-                const response = await fetch(`/api/availableAgents?jour=${jour}`);
+                const response = await fetch(`/api/availableAgents`);
                 if (response.ok) {
                     return await response.json();
                 } else {
@@ -295,6 +295,7 @@
                 return [];
             }
         }
+
 
         function filtreHoraire(agentsDisponibles, jour, start, end) {
             function convertirHeureEnMinutes(heure) {
