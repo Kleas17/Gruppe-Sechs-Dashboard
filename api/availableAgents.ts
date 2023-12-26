@@ -22,11 +22,6 @@ export default async function handler(
       [jour + ".end"]: { $gte: end }
     }).toArray();
 
-    console.log(response.json(agents));
-    console.log(response.json(agents));
-    console.log(response.json(agents));
-    console.log(response.json(agents));
-    console.log(response.json(agents));
     return response.json(agents);
 
   } catch (err) {
