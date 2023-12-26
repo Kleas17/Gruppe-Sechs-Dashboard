@@ -17,10 +17,7 @@ export default async function handler(
     const start = request.query.start;
     const end = request.query.end;
 
-    const agents = await collection.find({
-      [jour + ".start"]: { $lte: start },
-      [jour + ".end"]: { $gte: end }
-    }).toArray();
+    const agents = await collection.find([jour]).toArray();
 
     return response.json(agents);
 
