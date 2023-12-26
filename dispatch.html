@@ -312,15 +312,9 @@
             const agentsDisponiblesTrancheHoraire = [];
 
             agentsDisponibles.forEach(agent => {
-                console.log("Nous vérifions pour : ")
-                console.log(agent.nom)
                 if (agent[jour].start && agent[jour].end) {
                     const debutAgent = convertirHeureEnMinutes(agent[jour].start);
                     const finAgent = convertirHeureEnMinutes(agent[jour].end);
-                    console.log("Debut agent : " + debutAgent)
-                    console.log("Fin agent : " + finAgent)
-                    console.log("Debut dispatch : " + startMinutes)
-                    console.log("Fin dispatch : " + endMinutes)
                     if (debutAgent <= startMinutes && finAgent >= endMinutes) {
                         agentsDisponiblesTrancheHoraire.push(agent);
                     }
@@ -352,22 +346,8 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-                    console.log(agentsDisponibles)
-
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
-                    console.log('Avant avoir trier selon les horaires')
-                    console.log(agentsDisponibles)
                     agentsDisponibles = filtreHoraire(agentsDisponibles, jour, start, end);
-                    console.log('Après avoir trier selon les horaires')
-                    console.log(agentsDisponibles)
-
                     agentsDisponibles = shuffle(agentsDisponibles);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
