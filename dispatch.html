@@ -296,6 +296,35 @@
             }
         }
 
+        function filtreHoraire(agentsDisponibles, jour, start, end) {
+            // Convertit une heure sous forme de chaîne de caractères en minutes
+            function convertirHeureEnMinutes(heure) {
+                const [heures, minutes] = heure.split(':').map(Number);
+                return heures * 60 + minutes;
+            }
+
+            const startMinutes = convertirHeureEnMinutes(start);
+            const endMinutes = convertirHeureEnMinutes(end);
+            const agentsDisponiblesTrancheHoraire = [];
+
+            agentsDisponibles.forEach(agent => {
+                // Vérifier si l'agent travaille le jour donné et que les horaires sont définis
+                if (jour in agent && agent[jour].start && agent[jour].end) {
+                    const debutAgent = convertirHeureEnMinutes(agent[jour].start);
+                    const finAgent = convertirHeureEnMinutes(agent[jour].end);
+
+                    // Vérifier si l'agent est disponible pendant la tranche horaire demandée
+                    if (debutAgent <= startMinutes && finAgent >= endMinutes) {
+                        agentsDisponiblesTrancheHoraire.push(agent);
+                    }
+                }
+            });
+
+            return agentsDisponiblesTrancheHoraire;
+        }
+
+
+
         let absents = new Set();
 
         async function generer() {
@@ -325,7 +354,7 @@
                     console.log('Après :')
                     console.log(agentsDisponibles)
                     console.log('Après avoir trier selon les horaires')
-                    //agentsDisponibles = filtreHoraire(agentsDisponibles, start, end);
+                    agentsDisponibles = filtreHoraire(agentsDisponibles, dispatch[jour], start, end);
 
                     console.log('test de connaitre lhoraire de lagent')
                     console.log(agentsDisponibles[0][jour].start)
