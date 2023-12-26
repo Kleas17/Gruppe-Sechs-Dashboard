@@ -297,32 +297,25 @@
         }
 
         function filtreHoraire(agentsDisponibles, jour, start, end) {
-            // Convertit une heure sous forme de chaîne de caractères en minutes
             function convertirHeureEnMinutes(heure) {
                 const [heures, minutes] = heure.split(':').map(Number);
                 return heures * 60 + minutes;
             }
 
-            console.log(agentsDisponibles)
-            console.log(jour)
-            console.log(start)
-            console.log(end)
-
             const startMinutes = convertirHeureEnMinutes(start);
             const endMinutes = convertirHeureEnMinutes(end);
-            console.log("start : " + startMinutes)
-            console.log(" end : " + endMinutes)
-
             const agentsDisponiblesTrancheHoraire = [];
 
             agentsDisponibles.forEach(agent => {
-                console.log("agent : ")
-                console.log(agent[jour])
-                console.log(agent[jour][start])
+                console.log("Nous vérifions pour : ")
+                console.log(agent.nom)
                 if (agent[jour].start && agent[jour].end) {
                     const debutAgent = convertirHeureEnMinutes(agent[jour].start);
                     const finAgent = convertirHeureEnMinutes(agent[jour].end);
-
+                    console.log("Debut agent : " + debutAgent)
+                    console.log("Fin agent : " + finAgent)
+                    console.log("Debut dispatch : " + startMinutes)
+                    console.log("Fin dispatch : " + endMinutes)
                     if (debutAgent <= startMinutes && finAgent >= endMinutes) {
                         agentsDisponiblesTrancheHoraire.push(agent);
                     }
