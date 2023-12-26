@@ -317,7 +317,8 @@
 
             agentsDisponibles.forEach(agent => {
                 console.log("agent : ")
-                console.log(agent)
+                console.log(agent[jour])
+                console.log(agent[jour][start])
                 if (agent[jour].start && agent[jour].end) {
                     const debutAgent = convertirHeureEnMinutes(agent[jour].start);
                     const finAgent = convertirHeureEnMinutes(agent[jour].end);
