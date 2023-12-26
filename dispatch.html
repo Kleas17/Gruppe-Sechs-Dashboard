@@ -318,13 +318,10 @@
             agentsDisponibles.forEach(agent => {
                 console.log("agent : ")
                 console.log(agent)
-                console.log("taille heure len : " + agent[jour].start.length)
-                // Vérifier si l'agent travaille le jour donné et que les horaires sont définis
                 if (agent[jour].start && agent[jour].end) {
                     const debutAgent = convertirHeureEnMinutes(agent[jour].start);
                     const finAgent = convertirHeureEnMinutes(agent[jour].end);
 
-                    // Vérifier si l'agent est disponible pendant la tranche horaire demandée
                     if (debutAgent <= startMinutes && finAgent >= endMinutes) {
                         agentsDisponiblesTrancheHoraire.push(agent);
                     }
