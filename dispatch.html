@@ -343,23 +343,14 @@
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
                     const start = dispatch[jour].start;
                     const end = dispatch[jour].end;
-                    console.log('Start : ' + start)
-                    console.log('End : ' + end)
-
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    console.log('agent dispo avant filtre déjà assigné:')
-                    console.log(agentsDisponibles)
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
-                    console.log('Après :')
+                    console.log('Avant avoir trier selon les horaires')
                     console.log(agentsDisponibles)
-                    console.log('Après avoir trier selon les horaires')
                     agentsDisponibles = filtreHoraire(agentsDisponibles, dispatch[jour], start, end);
-
-                    console.log('test de connaitre lhoraire de lagent')
-                    console.log(agentsDisponibles[0][jour].start)
-
-
+                    console.log('Après avoir trier selon les horaires')
+                    console.log(agentsDisponibles)
 
                     agentsDisponibles = shuffle(agentsDisponibles);
 
