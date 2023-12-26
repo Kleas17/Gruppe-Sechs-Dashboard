@@ -357,7 +357,7 @@
                     agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
                     console.log('Avant avoir trier selon les horaires')
                     console.log(agentsDisponibles)
-                    agentsDisponibles = filtreHoraire(agentsDisponibles, dispatch[jour], start, end);
+                    agentsDisponibles = filtreHoraire(agentsDisponibles, jour, start, end);
                     console.log('Après avoir trier selon les horaires')
                     console.log(agentsDisponibles)
 
