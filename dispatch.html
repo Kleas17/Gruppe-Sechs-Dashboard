@@ -300,7 +300,7 @@
         function filtreHoraire(agentsDisponibles, jour, start, end) {
             function convertirHeureEnMinutes(heure) {
                 const [heures, minutes] = heure.split(':').map(Number);
-                if (heures < 5) {
+                if (heures < 6) {
                     return (24 + heures) * 60 + minutes;
                 } else {
                     return heures * 60 + minutes;
@@ -338,7 +338,21 @@
             });
 
             let output = "";
-            let assignedAgents = new Set();
+            let assignedAgents = {};
+
+            function isAgentAvailable(agentName, newStart, newEnd) {
+                if (!assignedAgents[agentName]) return true;
+                return assignedAgents[agentName].every(({ start, end }) => {
+                    return newEnd <= start || newStart >= end;
+                });
+            }
+
+            function addAgentToSchedule(agentName, start, end) {
+                if (!assignedAgents[agentName]) {
+                    assignedAgents[agentName] = [];
+                }
+                assignedAgents[agentName].push({ start, end });
+            }
 
             for (const dispatch of dispatches.dispatches) {
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
@@ -346,7 +360,7 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    agentsDisponibles = agentsDisponibles.filter(agent => !assignedAgents.has(agent.name) && !absents.has(agent.name));
+                    agentsDisponibles = agentsDisponibles.filter(agent => isAgentAvailable(agent.name, start, end) && !absents.has(agent.name));
                     agentsDisponibles = filtreHoraire(agentsDisponibles, jour, start, end);
                     agentsDisponibles = shuffle(agentsDisponibles);
 
@@ -361,7 +375,7 @@
 
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                             output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
-                            assignedAgents.add(agentsDisponibles[i].name);
+                            addAgentToSchedule(agentsDisponibles[i].name, start, end);
                         }
 
                         output += "</ul>";
@@ -375,6 +389,7 @@
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
+
     </script>
 
 </body>
