@@ -372,14 +372,6 @@
             ]
         };
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
         function showResult() {
             document.getElementById('resultat').style.opacity = '1';
         }
@@ -397,12 +389,9 @@
             }
         });
 
-
-        async function getAgentsDisponibles(jour, start, end) {
-            console.log(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
-
+        async function getAgentsDisponibles() {
             try {
-                const response = await fetch(`/api/availableAgents?jour=${jour}&start=${start}&end=${end}`);
+                const response = await fetch(`/api/availableAgents`);
                 if (response.ok) {
                     return await response.json();
                 } else {
@@ -415,11 +404,56 @@
             }
         }
 
+
+        function filtreHoraire(agentsDisponibles, jour, start, end) {
+            function convertirHeureEnMinutes(heure) {
+                const [heures, minutes] = heure.split(':').map(Number);
+                if (heures < 6) {
+                    return (24 + heures) * 60 + minutes;
+                } else {
+                    return heures * 60 + minutes;
+                }
+            }
+
+            const startMinutes = convertirHeureEnMinutes(start);
+            const endMinutes = convertirHeureEnMinutes(end);
+            const agentsDisponiblesTrancheHoraire = [];
+
+            agentsDisponibles.forEach(agent => {
+                if (agent[jour].start && agent[jour].end) {
+                    const debutAgent = convertirHeureEnMinutes(agent[jour].start);
+                    const finAgent = convertirHeureEnMinutes(agent[jour].end);
+                    if (debutAgent <= startMinutes && finAgent >= endMinutes) {
+                        agentsDisponiblesTrancheHoraire.push(agent);
+                    }
+                }
+            });
+
+            return agentsDisponiblesTrancheHoraire;
+        }
+
+
+
+        let absents = new Set();
+
         async function generer() {
+            absents.clear();
             const jour = document.getElementById('jourSelect').value;
+            document.querySelectorAll('.selection-container input').forEach(input => {
+                if (input.value) {
+                    absents.add(input.value.trim());
+                }
+            });
 
             let output = "";
-            let assignedAgents = new Set();
+            let assignedAgents = {};
+
+            function addAgentToSchedule(agentName, start, end) {
+                if (!assignedAgents[agentName]) {
+                    assignedAgents[agentName] = [];
+                }
+                assignedAgents[agentName].push({ start, end });
+            }
 
             for (const dispatch of dispatches.dispatches) {
                 if (dispatch[jour] && dispatch[jour].start && dispatch[jour].end) {
@@ -427,16 +461,19 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
+                    agentsDisponibles = agentsDisponibles.filter(agent => isAgentAvailable(agent.name, start, end) && !absents.has(agent.name));
+                    agentsDisponibles = filtreHoraire(agentsDisponibles, jour, start, end);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
-                    output += `<h3>Dispo : ${dispatch.lieux}</h3>`;
+                    output += `<h3>Jour : ${dispatch.lieux}</h3>`;
+                    output += `<p><strong>Début :</strong> ${start}</p>`;
+                    output += `<p><strong>Fin :</strong> ${end}</p>`;
 
                     if (agentsDisponibles.length > 0) {
                         output += "<strong>Agents Affecté :</strong><ul>";
 
                         for (let i = 0; i < Math.min(dispatch.nbAgents, agentsDisponibles.length); i++) {
                             output += `<li><span class="agent-info">${agentsDisponibles[i].name}</span></li>`;
-                            assignedAgents.add(agentsDisponibles[i].name);
                         }
 
                         output += "</ul>";
@@ -450,6 +487,7 @@
             document.getElementById('resultat').innerHTML = output;
             showResult();
         }
+
     </script>
 
 </body>
