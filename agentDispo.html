@@ -180,13 +180,6 @@
             <option value="Dimanche">Dimanche</option>
         </select>
         <button onclick="generer()">Générer</button>
-
-        <div class="absents-container">
-            <label>Absents :</label>
-            <div id="absents-list">
-                <input type="text" class="absent" placeholder="Nom de l'absent">
-            </div>
-        </div>
     </div>
 
     <div id="resultat" class="resultat-container2"></div>
@@ -375,19 +368,6 @@
         function showResult() {
             document.getElementById('resultat').style.opacity = '1';
         }
-
-        document.addEventListener('input', function (e) {
-            if (e.target.classList.contains('absent')) {
-                const allAbsents = document.querySelectorAll('.absent');
-                if (e.target === allAbsents[allAbsents.length - 1]) {
-                    const newInput = document.createElement('input');
-                    newInput.type = 'text';
-                    newInput.className = 'absent';
-                    newInput.placeholder = "Nom de l'absent";
-                    document.getElementById('absents-list').appendChild(newInput);
-                }
-            }
-        });
 
         async function getAgentsDisponibles() {
             try {
