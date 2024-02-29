@@ -461,7 +461,7 @@
                     const end = dispatch[jour].end;
 
                     let agentsDisponibles = await getAgentsDisponibles(jour, start, end);
-                    agentsDisponibles = agentsDisponibles.filter(agent => isAgentAvailable(agent.name, start, end) && !absents.has(agent.name));
+                    //agentsDisponibles = agentsDisponibles.filter(agent => isAgentAvailable(agent.name, start, end) && !absents.has(agent.name));
                     agentsDisponibles = filtreHoraire(agentsDisponibles, jour, start, end);
 
                     output += `<div class="card" style="background-color:${dispatch.color}">`;
